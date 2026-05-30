@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTech - Educação Ambiental</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="educacao-ambiental.css">
+</head>
+
+<body>
+    <div class="d-flex vh-100">
+        <!-- Sidebar -->
+        <nav class="sidebar vh-100 p-3 d-flex flex-column">
+            <img src="imagens/logo.png" alt="Logo Ecotech" class="mb-4 logo-ecotech">
+
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-house"></i>Início</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-bell"></i>Nova Denúncia</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-clipboard-plus"></i>Minhas denúncias</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-leaf"></i>Painel pessoal</a></li>
+                <li class="nav-item"><a href="#" class="nav-link active"><i class="bi bi-mortarboard"></i>Educação ambiental</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-geo-alt"></i>Locais de coleta</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-person"></i>Perfil</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-gear"></i>Configurações</a></li>
+            </ul>
+
+            <div class="sidebar-card text-center p-3 mb-4">
+                <img src="imagens/leaf.svg" class="mb-4" style="width: 20%;">
+                <p class="fw-bold">Cada denúncia faz a diferença!</p>
+                <small>Graças a você, nossa cidade<br> fica mais limpa e sustentável.</small>
+            </div>
+
+            <a href="#" class="nav-link mt-auto"><i class="bi bi-box-arrow-right"></i> Sair</a>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content flex-fill p-4">
+            <!-- Top Header -->
+            <div class="top-header d-flex justify-content-between align-items-center mb-4">
+                <div class="breadcrumb text-muted small">
+                    <span>Início</span>
+                    <i class="bi bi-chevron-right mx-2"></i>
+                    <span class="fw-semibold text-dark">Educação Ambiental</span>
+                </div>
+                <div class="user-profile d-flex align-items-center gap-2">
+                    <i class="bi bi-bell fs-5 text-muted"></i>
+                    <img src="imagens/avatar.png" alt="Avatar" class="avatar-img">
+                </div>
+            </div>
+
+            <!-- Page Title -->
+            <div class="page-header mb-4">
+                <h2 class="page-title mb-1">Educação Ambiental</h2>
+                <p class="page-subtitle text-muted">Conhecimento que transforma o planeta.</p>
+            </div>
+
+            <!-- Hero Banner -->
+            <div class="edu-hero mb-5">
+                <div class="row align-items-center g-4">
+                    <div class="col-md-7">
+                        <h3 class="edu-hero-title">Aprenda, pratique e inspire.</h3>
+                        <p class="edu-hero-text">A educação ambiental é a base para uma sociedade sustentável. Descubra como pequenas mudanças no dia a dia podem gerar grandes impactos no meio ambiente.</p>
+                        <button class="btn btn-explorar">Explorar conteúdos</button>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="edu-hero-facts">
+                            <div class="fact-box">
+                                <i class="bi bi-globe-americas"></i>
+                                <p>O Brasil recicla apenas <strong>4%</strong> de todo o lixo produzido.</p>
+                            </div>
+                            <div class="fact-box">
+                                <i class="bi bi-droplet"></i>
+                                <p>Uma latinha de alumínio leva <strong>400 anos</strong> para se decompor na natureza.</p>
+                            </div>
+                            <div class="fact-box">
+                                <i class="bi bi-tree"></i>
+                                <p>Reciclar 1 tonelada de papel salva <strong>20 árvores</strong> adultas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <ul class="nav nav-tabs edu-tabs mb-4" id="eduTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="tipos-tab" data-bs-toggle="tab" data-bs-target="#tipos" type="button" role="tab">Tipos de Resíduos</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="separar-tab" data-bs-toggle="tab" data-bs-target="#separar" type="button" role="tab">Como Separar</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="impacto-tab" data-bs-toggle="tab" data-bs-target="#impacto" type="button" role="tab">Impacto Ambiental</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="dicas-tab" data-bs-toggle="tab" data-bs-target="#dicas" type="button" role="tab">Dicas Sustentáveis</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="quiz-tab" data-bs-toggle="tab" data-bs-target="#quiz" type="button" role="tab">Quiz Eco</button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="eduTabsContent">
+                <!-- TAB: Tipos de Resíduos -->
+                <div class="tab-pane fade show active" id="tipos" role="tabpanel">
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="tipo-card">
+                                <div class="tipo-icon azul"><i class="bi bi-recycle"></i></div>
+                                <h5>Recicláveis</h5>
+                                <p>Papel, papelão, vidro, metal e certos plásticos. São materiais que podem ser reprocessados e transformados em novos produtos.</p>
+                                <ul class="tipo-lista">
+                                    <li><i class="bi bi-check2"></i> Jornais e revistas</li>
+                                    <li><i class="bi bi-check2"></i> Garrafas PET</li>
+                                    <li><i class="bi bi-check2"></i> Latas de alumínio</li>
+                                    <li><i class="bi bi-check2"></i> Potes de vidro</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="tipo-card">
+                                <div class="tipo-icon marrom"><i class="bi bi-trash"></i></div>
+                                <h5>Orgânicos</h5>
+                                <p>Restos de comida, cascas de frutas, folhas e galhos. Podem ser compostados para gerar adubo natural.</p>
+                                <ul class="tipo-lista">
+                                    <li><i class="bi bi-check2"></i> Cascas de banana</li>
+                                    <li><i class="bi bi-check2"></i> Borra de café</li>
+                                    <li><i class="bi bi-check2"></i> Restos de legumes</li>
+                                    <li><i class="bi bi-check2"></i> Folhas secas</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="tipo-card">
+                                <div class="tipo-icon vermelho"><i class="bi bi-exclamation-triangle"></i></div>
+                                <h5>Perigosos</h5>
+                                <p>Pilhas, baterias, lâmpadas, tintas, solventes e produtos químicos. Exigem descarte especializado.</p>
+                                <ul class="tipo-lista">
+                                    <li><i class="bi bi-check2"></i> Pilhas e baterias</li>
+                                    <li><i class="bi bi-check2"></i> Lâmpadas fluorescentes</li>
+                                    <li><i class="bi bi-check2"></i> Tintas e solventes</li>
+                                    <li><i class="bi bi-check2"></i> Medicamentos vencidos</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="tipo-card">
+                                <div class="tipo-icon cinza"><i class="bi bi-plug"></i></div>
+                                <h5>Eletrônicos (E-lixo)</h5>
+                                <p>Celulares, computadores, cabos e eletrodomésticos. Contêm metais pesados que poluem o solo e a água.</p>
+                                <ul class="tipo-lista">
+                                    <li><i class="bi bi-check2"></i> Celulares antigos</li>
+                                    <li><i class="bi bi-check2"></i> Cabos e carregadores</li>
+                                    <li><i class="bi bi-check2"></i> Eletrodomésticos</li>
+                                    <li><i class="bi bi-check2"></i> Pilhas de notebook</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="tipo-card">
+                                <div class="tipo-icon laranja"><i class="bi bi-box"></i></div>
+                                <h5>Entulho / Madeira</h5>
+                                <p>Restos de construção, móveis velhos, portas e pisos de madeira. Podem ser reaproveitados ou reciclados.</p>
+                                <ul class="tipo-lista">
+                                    <li><i class="bi bi-check2"></i> Móveis danificados</li>
+                                    <li><i class="bi bi-check2"></i> Restos de obra</li>
+                                    <li><i class="bi bi-check2"></i> Portas e janelas</li>
+                                    <li><i class="bi bi-check2"></i> Pisos de madeira</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="tipo-card">
+                                <div class="tipo-icon roxo"><i class="bi bi-bandaid"></i></div>
+                                <h5>Saúde / Hospitalar</h5>
+                                <p>Seringas, agulhas, medicamentos e materiais contaminados. Descarte obrigatório em locais autorizados.</p>
+                                <ul class="tipo-lista">
+                                    <li><i class="bi bi-check2"></i> Seringas usadas</li>
+                                    <li><i class="bi bi-check2"></i> Medicamentos vencidos</li>
+                                    <li><i class="bi bi-check2"></i> Máscaras contaminadas</li>
+                                    <li><i class="bi bi-check2"></i> Curativos usados</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB: Como Separar -->
+                <div class="tab-pane fade" id="separar" role="tabpanel">
+                    <div class="separar-intro mb-4">
+                        <h4 class="mb-3">Guia Prático de Separação</h4>
+                        <p class="text-muted">Separar corretamente é o primeiro passo para a reciclagem funcionar. Veja como fazer:</p>
+                    </div>
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="passo-card">
+                                <div class="passo-num">1</div>
+                                <div class="passo-conteudo">
+                                    <h5>Limpe os recicláveis</h5>
+                                    <p>Enxágue garrafas, potes e latas para remover restos de alimentos. Não precisa estar perfeito, mas sem excesso de sujeira.</p>
+                                    <div class="passo-dica"><i class="bi bi-lightbulb"></i> <strong>Dica:</strong> Não use água em excesso. Uma rápida enxaguada é suficiente.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="passo-card">
+                                <div class="passo-num">2</div>
+                                <div class="passo-conteudo">
+                                    <h5>Retire as tampas</h5>
+                                    <p>Garrafas PET e potes de vidro devem ser descartados sem tampas, pois são feitos de materiais diferentes.</p>
+                                    <div class="passo-dica"><i class="bi bi-lightbulb"></i> <strong>Dica:</strong> Tampas plásticas vão na lixeira comum se não houver coleta específica.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="passo-card">
+                                <div class="passo-num">3</div>
+                                <div class="passo-conteudo">
+                                    <h5>Amasse e dobre</h5>
+                                    <p>Papelão e caixas devem ser desmontadas. Garrafas PET podem ser amassadas para ocupar menos espaço.</p>
+                                    <div class="passo-dica"><i class="bi bi-lightbulb"></i> <strong>Dica:</strong> Isso facilita o transporte e aumenta a capacidade dos caminhões.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="passo-card">
+                                <div class="passo-num">4</div>
+                                <div class="passo-conteudo">
+                                    <h5>Separe por material</h5>
+                                    <p>Organize papel, plástico, vidro e metal em recipientes diferentes. Isso agiliza a coleta seletiva.</p>
+                                    <div class="passo-dica"><i class="bi bi-lightbulb"></i> <strong>Dica:</strong> Use sacolas ou caixas identificadas com cores diferentes.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lixeiras-section mt-5">
+                        <h5 class="mb-4">Cores das Lixeiras</h5>
+                        <div class="row g-3">
+                            <div class="col-md-4 col-sm-6">
+                                <div class="lixeira-item azul"><i class="bi bi-trash-fill"></i> <span>Papel / Papelão</span></div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="lixeira-item vermelho"><i class="bi bi-trash-fill"></i> <span>Plástico</span></div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="lixeira-item verde"><i class="bi bi-trash-fill"></i> <span>Vidro</span></div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="lixeira-item amarelo"><i class="bi bi-trash-fill"></i> <span>Metal</span></div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="lixeira-item marrom"><i class="bi bi-trash-fill"></i> <span>Orgânico</span></div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="lixeira-item cinza"><i class="bi bi-trash-fill"></i> <span>Não Reciclável</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB: Impacto Ambiental -->
+                <div class="tab-pane fade" id="impacto" role="tabpanel">
+                    <div class="impacto-hero mb-4">
+                        <h4>O Impacto do Descarte Irregular</h4>
+                        <p class="text-muted">O lixo descartado incorretamente afeta todos os ecossistemas. Conheça os principais danos:</p>
+                    </div>
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="impacto-card">
+                                <div class="impacto-img">
+                                    <img src="imagens/impacto-solo.jpg" class="img-fluid rounded-4" alt="Solo">
+                                </div>
+                                <div class="impacto-conteudo">
+                                    <h5><i class="bi bi-layer-backward"></i> Contaminação do Solo</h5>
+                                    <p>Resíduos químicos, pilhas e medicamentos liberam toxinas que permeiam o solo, tornando-o infértil e perigoso para a agricultura por décadas.</p>
+                                    <div class="impacto-stat">
+                                        <span class="stat-num">30%</span>
+                                        <span class="stat-txt">dos solos urbanos apresentam contaminação por metais pesados</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="impacto-card">
+                                <div class="impacto-img">
+                                    <img src="imagens/impacto-agua.jpg" class="img-fluid rounded-4" alt="Água">
+                                </div>
+                                <div class="impacto-conteudo">
+                                    <h5><i class="bi bi-droplet"></i> Poluição da Água</h5>
+                                    <p>O lixo descartado em rios e praias libera microplásticos e substâncias tóxicas que afetam a vida marinha e a qualidade da água potável.</p>
+                                    <div class="impacto-stat">
+                                        <span class="stat-num">8M</span>
+                                        <span class="stat-txt">toneladas de plástico vão parar nos oceanos a cada ano</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="impacto-card">
+                                <div class="impacto-img">
+                                    <img src="imagens/impacto-ar.jpg" class="img-fluid rounded-4" alt="Ar">
+                                </div>
+                                <div class="impacto-conteudo">
+                                    <h5><i class="bi bi-wind"></i> Qualidade do Ar</h5>
+                                    <p>A queima de lixo em lixões a céu aberto libera gases tóxicos como dioxinas e furanos, responsáveis por doenças respiratórias graves.</p>
+                                    <div class="impacto-stat">
+                                        <span class="stat-num">5%</span>
+                                        <span class="stat-txt">das emissões globais de gases de efeito estufa vêm de resíduos</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="impacto-card">
+                                <div class="impacto-img">
+                                    <img src="imagens/impacto-fauna.jpg" class="img-fluid rounded-4" alt="Fauna">
+                                </div>
+                                <div class="impacto-conteudo">
+                                    <h5><i class="bi bi-bug"></i> Fauna e Flora</h5>
+                                    <p>Animais confundem plásticos com alimentos e ficam presos em embalagens. A poluição visual também afeta o equilíbrio dos ecossistemas.</p>
+                                    <div class="impacto-stat">
+                                        <span class="stat-num">100K</span>
+                                        <span class="stat-txt">animais marinhos morrem anualmente por ingestão de plástico</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB: Dicas Sustentáveis -->
+                <div class="tab-pane fade" id="dicas" role="tabpanel">
+                    <div class="dicas-grid row g-4">
+                        <div class="col-md-4">
+                            <div class="dica-sust-card">
+                                <div class="dica-sust-icon"><i class="bi bi-bag"></i></div>
+                                <h5>Reutilize Sacolas</h5>
+                                <p>Carregue sempre uma sacola reutilizável. Uma sacola plástica leva até 400 anos para se decompor.</p>
+                                <span class="dica-tag">Redução de plástico</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dica-sust-card">
+                                <div class="dica-sust-icon"><i class="bi bi-cup-straw"></i></div>
+                                <h5>Diga Não ao Canudo</h5>
+                                <p>Canudos de plástico são um dos itens mais encontrados em praias. Use versões de papel, bambu ou inox.</p>
+                                <span class="dica-tag">Menos plástico</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dica-sust-card">
+                                <div class="dica-sust-icon"><i class="bi bi-basket"></i></div>
+                                <h5>Composte em Casa</h5>
+                                <p>Transforme restos de comida em adubo. É fácil, reduz o lixo e ainda nutre suas plantas.</p>
+                                <span class="dica-tag">Orgânicos</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dica-sust-card">
+                                <div class="dica-sust-icon"><i class="bi bi-droplet-half"></i></div>
+                                <h5>Economize Água</h5>
+                                <p>Feche a torneira ao escovar os dentes. Economize até 12 litros por dia com esse simples gesto.</p>
+                                <span class="dica-tag">Preservação</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dica-sust-card">
+                                <div class="dica-sust-icon"><i class="bi bi-lightning-charge"></i></div>
+                                <h5>Desligue da Tomada</h5>
+                                <p>Aparelhos em stand-by consomem energia. Desligue da tomada quando não estiver usando.</p>
+                                <span class="dica-tag">Economia</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="dica-sust-card">
+                                <div class="dica-sust-icon"><i class="bi bi-cart3"></i></div>
+                                <h5>Compre a Granel</h5>
+                                <p>Evite embalagens desnecessárias comprando produtos a granel com seus próprios potes.</p>
+                                <span class="dica-tag">Zero Waste</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB: Quiz Eco -->
+                <div class="tab-pane fade" id="quiz" role="tabpanel">
+                    <div class="quiz-card">
+                        <div class="quiz-header text-center mb-4">
+                            <i class="bi bi-patch-question quiz-icon"></i>
+                            <h4>Quiz Eco-Consciente</h4>
+                            <p class="text-muted">Teste seus conhecimentos sobre sustentabilidade!</p>
+                        </div>
+
+                        <div class="quiz-pergunta">
+                            <h6 class="pergunta-texto">1. Quanto tempo uma garrafa PET leva para se decompor na natureza?</h6>
+                            <div class="quiz-opcoes">
+                                <button class="quiz-opcao">10 anos</button>
+                                <button class="quiz-opcao">50 anos</button>
+                                <button class="quiz-opcao correta">450 anos</button>
+                                <button class="quiz-opcao">1000 anos</button>
+                            </div>
+                        </div>
+
+                        <div class="quiz-pergunta mt-4">
+                            <h6 class="pergunta-texto">2. Qual destes itens NÃO pode ir na lixeira de recicláveis comum?</h6>
+                            <div class="quiz-opcoes">
+                                <button class="quiz-opcao">Jornal</button>
+                                <button class="quiz-opcao correta">Pilha</button>
+                                <button class="quiz-opcao">Garrafa PET</button>
+                                <button class="quiz-opcao">Lata de alumínio</button>
+                            </div>
+                        </div>
+
+                        <div class="quiz-pergunta mt-4">
+                            <h6 class="pergunta-texto">3. O que é compostagem?</h6>
+                            <div class="quiz-opcoes">
+                                <button class="quiz-opcao">Queima de lixo</button>
+                                <button class="quiz-opcao correta">Decomposição de orgânicos em adubo</button>
+                                <button class="quiz-opcao">Separação de recicláveis</button>
+                                <button class="quiz-opcao">Enterro de lixo em aterros</button>
+                            </div>
+                        </div>
+
+                        <div class="quiz-resultado mt-4 text-center">
+                            <div class="resultado-box">
+                                <span class="resultado-num">2/3</span>
+                                <span class="resultado-txt">Você está no caminho certo! 🌱</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="faq-section mt-5">
+                <h4 class="faq-title mb-4">Perguntas Frequentes</h4>
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                O que acontece com as denúncias feitas pela EcoTech?
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Todas as denúncias são encaminhadas para a prefeitura ou órgão responsável da sua região. Você pode acompanhar o status em tempo real na aba "Minhas Denúncias".
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                Posso denunciar de forma anônima?
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Sim! Na hora de fazer a denúncia, você pode optar por não identificar seu nome público. Seus dados pessoais permanecem protegidos conforme a LGPD.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                Como sei se um local de coleta aceita meu tipo de resíduo?
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Na aba "Locais de Coleta", cada ponto possui informações detalhadas sobre os tipos de resíduos aceitos, horários de funcionamento e distância da sua localização.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                O que ganho ao acumular pontos na plataforma?
+                            </button>
+                        </h2>
+                        <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Os pontos refletem seu engajamento ambiental. Em breve, serão convertidos em benefícios como descontos em parceiros sustentáveis, brindes e reconhecimento público como "Guardião Ambiental".
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

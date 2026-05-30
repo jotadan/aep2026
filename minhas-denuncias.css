@@ -1,0 +1,394 @@
+/* ============================================
+   ECOTECH - MINHAS DENÚNCIAS
+   ============================================ */
+
+/* Reset e Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* ============================================
+   SIDEBAR (Estilo Compartilhado)
+   ============================================ */
+
+.logo-ecotech {
+    width: 150px;
+    margin: 20px 0;
+    display: block;
+}
+
+.sidebar img {
+    width: 100%;
+    margin: 0 auto 20px auto;
+    display: block;
+}
+
+/* Configuração Base da Sidebar */
+.sidebar {
+    display: flex;
+    gap: 15px;
+    width: 280px;
+    min-width: 280px;
+    background-color: #fdfdfd;
+    border-right: 1px solid #eee;
+    flex-shrink: 0;
+}
+
+.sidebar .nav-link {
+    color: #333;
+    font-weight: 500;
+    padding: 12px 20px;
+    border-radius: 50px;
+    margin-bottom: 5px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+/* Hover e Item Ativo (Fundo Verde Escuro) */
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+    color: white;
+    background-color: #066106;
+}
+
+/* Card de Destaque */
+.sidebar-card {
+    background-color: #f4f7f4;
+    border-radius: 20px;
+    color: #066106;
+    padding: 15px;
+    margin: 0 auto;
+    border: 1px solid #eee;
+}
+
+.sidebar-card p {
+    margin: 0 auto;
+    max-width: 130px;
+}
+
+.sidebar-card i {
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Ajuste dos ícones */
+.nav-link i {
+    margin-right: 12px;
+    width: 24px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
+
+.main-content {
+    background-color: #f8f9fa;
+    overflow-y: auto;
+}
+
+/* Top Header */
+.top-header {
+    padding-bottom: 10px;
+}
+
+.breadcrumb {
+    font-size: 0.9rem;
+}
+
+.breadcrumb i {
+    font-size: 0.7rem;
+}
+
+.avatar-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e0e0e0;
+}
+
+/* Page Title */
+.page-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+/* ============================================
+   DENÚNCIA CARD
+   ============================================ */
+
+.denuncia-card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.denuncia-id {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+/* Badge Status */
+.badge-status {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.badge-status.em-andamento {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeaa7;
+}
+
+.badge-status.resolvido {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.badge-status.pendente {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.denuncia-data {
+    font-size: 0.85rem;
+}
+
+/* Imagem */
+.denuncia-imagem img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+/* Informações */
+.denuncia-info {
+    padding-left: 10px;
+}
+
+.info-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+}
+
+.info-row {
+    display: flex;
+    margin-bottom: 16px;
+    align-items: flex-start;
+}
+
+.info-label {
+    font-weight: 600;
+    color: #666;
+    min-width: 100px;
+    font-size: 0.9rem;
+}
+
+.info-value {
+    color: #333;
+    font-size: 0.9rem;
+    flex: 1;
+}
+
+.status-em-andamento {
+    color: #856404;
+    font-weight: 600;
+}
+
+/* ============================================
+   ANDAMENTO (TIMELINE)
+   ============================================ */
+
+.andamento-section {
+    border-top: 1px solid #eee;
+    padding-top: 25px;
+}
+
+.andamento-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 25px;
+}
+
+.timeline {
+    position: relative;
+    padding-left: 20px;
+}
+
+/* LINHA ATUALIZADA: Centralizada exatamente no meio do ícone */
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 38px; /* Alterado de 28px para 38px para alinhar com o centro do ícone */
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #e0e0e0;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-right: 20px;
+    z-index: 1;
+    font-size: 0.9rem;
+}
+
+.timeline-item.completed .timeline-icon {
+    background-color: #066106;
+    color: white;
+}
+
+.timeline-item.pending .timeline-icon {
+    background-color: #e0e0e0;
+    color: #999;
+}
+
+.timeline-content {
+    display: flex;
+    flex: 1;
+    gap: 20px;
+}
+
+.timeline-date {
+    min-width: 80px;
+    font-size: 0.8rem;
+    color: #999;
+    line-height: 1.4;
+    text-align: right;
+}
+
+.timeline-text {
+    flex: 1;
+}
+
+.timeline-text strong {
+    font-size: 0.95rem;
+    color: #333;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.timeline-text p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+/* ============================================
+   COMPARTILHAR
+   ============================================ */
+
+.compartilhar-section {
+    border-top: 1px solid #eee;
+    padding-top: 25px;
+}
+
+.compartilhar-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+
+.btn-compartilhar {
+    border-radius: 10px;
+    padding: 10px 24px;
+    font-weight: 500;
+    border-color: #066106;
+    color: #066106;
+    font-size: 0.9rem;
+}
+
+.btn-compartilhar:hover {
+    background-color: #066106;
+    color: white;
+}
+
+.btn-compartilhar i {
+    margin-right: 8px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 991px) {
+    .sidebar {
+        width: 240px;
+        min-width: 240px;
+    }
+
+    .denuncia-imagem img {
+        height: 220px;
+    }
+}
+
+@media (max-width: 767px) {
+    .sidebar {
+        display: none;
+    }
+
+    .denuncia-card {
+        padding: 20px;
+    }
+
+    .timeline-content {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .timeline-date {
+        text-align: left;
+    }
+
+    .info-row {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .info-label {
+        min-width: auto;
+    }
+}

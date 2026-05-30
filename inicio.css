@@ -1,0 +1,268 @@
+/* ============================================
+   ECOTECH - INÍCIO (Dashboard)
+   ============================================ */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* ============================================
+   SIDEBAR (Compartilhado)
+   ============================================ */
+
+.logo-ecotech { width: 150px; margin: 20px 0; display: block; }
+.sidebar img { width: 100%; margin: 0 auto 20px auto; display: block; }
+
+.sidebar {
+    display: flex; gap: 15px;
+    width: 280px; min-width: 280px;
+    background-color: #fdfdfd;
+    border-right: 1px solid #eee;
+    flex-shrink: 0;
+}
+
+.sidebar .nav-link {
+    color: #333; font-weight: 500;
+    padding: 12px 20px; border-radius: 50px;
+    margin-bottom: 5px; transition: 0.3s;
+    display: flex; align-items: center;
+    text-decoration: none;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+    color: white; background-color: #066106;
+}
+
+.sidebar-card {
+    background-color: #f4f7f4;
+    border-radius: 20px; color: #066106;
+    padding: 15px; margin: 0 auto;
+    border: 1px solid #eee;
+}
+.sidebar-card p { margin: 0 auto; max-width: 130px; }
+.sidebar-card i { font-size: 1.5rem; display: block; margin-bottom: 5px; }
+
+.nav-link i { margin-right: 12px; width: 24px; text-align: center; font-size: 1.1rem; }
+
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
+
+.main-content { background-color: #f8f9fa; overflow-y: auto; }
+
+.top-header { padding-bottom: 10px; }
+.breadcrumb { font-size: 0.9rem; }
+.avatar-img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #e0e0e0; }
+
+/* Saudação */
+.saudacao-titulo { font-size: 1.6rem; font-weight: 700; color: #1a1a1a; }
+.saudacao-sub { font-size: 0.95rem; }
+
+/* ============================================
+   STATS CARDS
+   ============================================ */
+
+.stat-card {
+    background-color: white;
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    height: 100%;
+}
+
+.stat-card.verde { border-left: 4px solid #4caf50; }
+.stat-card.azul   { border-left: 4px solid #2196f3; }
+.stat-card.amarelo{ border-left: 4px solid #ff9800; }
+.stat-card.roxo   { border-left: 4px solid #9c27b0; }
+
+.stat-num {
+    font-size: 1.8rem; font-weight: 700;
+}
+.stat-card.verde .stat-num { color: #4caf50; }
+.stat-card.azul   .stat-num { color: #2196f3; }
+.stat-card.amarelo .stat-num { color: #ff9800; }
+.stat-card.roxo   .stat-num { color: #9c27b0; }
+
+.stat-desc { font-size: 0.85rem; color: #666; font-weight: 500; }
+
+.stat-link {
+    font-size: 0.8rem; font-weight: 600;
+    text-decoration: none; margin-top: 4px;
+    display: inline-flex; align-items: center; gap: 4px;
+}
+.stat-card.verde .stat-link { color: #4caf50; }
+.stat-card.azul   .stat-link { color: #2196f3; }
+.stat-card.amarelo .stat-link { color: #ff9800; }
+.stat-card.roxo   .stat-link { color: #9c27b0; }
+
+.stat-link i { font-size: 0.7rem; }
+
+/* ============================================
+   DENÚNCIAS CARD
+   ============================================ */
+
+.denuncias-card, .mapa-card {
+    background-color: white;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    height: 100%;
+}
+
+.section-title { font-size: 1rem; font-weight: 700; color: #1a1a1a; }
+
+.denuncia-row {
+    padding: 14px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+.denuncia-row:last-child { border-bottom: none; }
+
+.denuncia-thumb {
+    width: 56px; height: 56px;
+    border-radius: 10px; object-fit: cover;
+    flex-shrink: 0;
+}
+
+.denuncia-cat { font-size: 0.9rem; font-weight: 600; color: #333; }
+.denuncia-end { font-size: 0.78rem; color: #888; }
+
+.badge-status {
+    font-size: 0.75rem; font-weight: 600;
+    padding: 5px 12px; border-radius: 20px;
+    white-space: nowrap;
+}
+.badge-status.andamento { background-color: #fff3cd; color: #856404; }
+.badge-status.concluida { background-color: #d4edda; color: #155724; }
+
+.denuncia-data { font-size: 0.8rem; color: #aaa; white-space: nowrap; }
+
+.btn-ver-todas {
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 12px;
+    font-weight: 500;
+    color: #555;
+    background-color: white;
+    transition: 0.3s;
+}
+.btn-ver-todas:hover {
+    background-color: #f8f9fa;
+    border-color: #ccc;
+}
+
+/* ============================================
+   MAPA MINI
+   ============================================ */
+
+.mapa-mini {
+    width: 100%; height: 280px;
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 50%, #e0f2f1 100%);
+    border-radius: 14px;
+    position: relative;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+}
+
+.mapa-grid {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+.mapa-cidade {
+    font-size: 1.3rem; font-weight: 700;
+    color: rgba(0,0,0,0.15);
+    z-index: 1;
+}
+
+.mapa-pin {
+    position: absolute;
+    font-size: 1.8rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    z-index: 2;
+}
+.mapa-pin.pin-laranja { color: #ff9800; }
+.mapa-pin.pin-verde   { color: #4caf50; }
+.mapa-pin.pin-roxo    { color: #9c27b0; }
+
+.mapa-legenda { font-size: 0.8rem; color: #666; }
+.legenda-item { display: flex; align-items: center; gap: 6px; }
+.legenda-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%; display: inline-block;
+}
+.legenda-dot.laranja { background-color: #ff9800; }
+.legenda-dot.verde   { background-color: #4caf50; }
+.legenda-dot.roxo    { background-color: #9c27b0; }
+
+/* ============================================
+   DIFERENÇA + DICA CARDS
+   ============================================ */
+
+.diferenca-card, .dica-card {
+    background-color: white;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    height: 100%;
+}
+
+.diferenca-card {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+}
+
+.diferenca-card h5, .dica-card h5 {
+    font-size: 1.1rem; font-weight: 700;
+    color: #1a1a1a; margin-bottom: 8px;
+}
+
+.diferenca-card p, .dica-card p {
+    font-size: 0.9rem; line-height: 1.5;
+}
+
+.diferenca-img img, .dica-img img {
+    width: 120px; height: auto;
+}
+
+.btn-dica {
+    background-color: white;
+    color: #066106;
+    border: 1px solid #066106;
+    border-radius: 10px;
+    padding: 8px 20px;
+    font-weight: 500;
+    font-size: 0.85rem;
+}
+.btn-dica:hover {
+    background-color: #066106;
+    color: white;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 991px) {
+    .sidebar { width: 240px; min-width: 240px; }
+    .stat-num { font-size: 1.5rem; }
+}
+
+@media (max-width: 767px) {
+    .sidebar { display: none; }
+    .stat-card { padding: 18px; }
+    .denuncia-row { flex-wrap: wrap; }
+    .denuncia-data { width: 100%; text-align: right; margin-top: 4px; }
+    .mapa-mini { height: 220px; }
+    .diferenca-card, .dica-card { flex-direction: column; text-align: center; }
+}

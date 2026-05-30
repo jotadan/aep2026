@@ -1,0 +1,392 @@
+/* ============================================
+   ECOTECH - GLOBAL STYLES (Reutilizável)
+   ============================================ */
+
+/* Reset e Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* ============================================
+   SIDEBAR (Estilo Compartilhado)
+   ============================================ */
+
+.logo-ecotech {
+    width: 150px;
+    margin: 20px 0;
+    display: block;
+}
+
+.sidebar img {
+    width: 100%;
+    margin: 0 auto 20px auto;
+    display: block;
+}
+
+/* Configuração Base da Sidebar */
+.sidebar {
+    display: flex;
+    gap: 15px;
+    width: 280px;
+    min-width: 280px;
+    background-color: #fdfdfd;
+    border-right: 1px solid #eee;
+    flex-shrink: 0;
+}
+
+.sidebar .nav-link {
+    color: #333;
+    font-weight: 500;
+    padding: 12px 20px;
+    border-radius: 50px;
+    margin-bottom: 5px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+/* Hover e Item Ativo (Fundo Verde Escuro) */
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+    color: white;
+    background-color: #066106;
+}
+
+/* Card de Destaque */
+.sidebar-card {
+    background-color: #f4f7f4;
+    border-radius: 20px;
+    color: #066106;
+    padding: 15px;
+    margin: 0 auto;
+    border: 1px solid #eee;
+}
+
+.sidebar-card p {
+    margin: 0 auto;
+    max-width: 130px;
+}
+
+.sidebar-card i {
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Ajuste dos ícones */
+.nav-link i {
+    margin-right: 12px;
+    width: 24px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+/* ============================================
+   MAIN CONTENT (Estilo Compartilhado)
+   ============================================ */
+
+.main-content {
+    background-color: #f8f9fa;
+    overflow-y: auto;
+}
+
+/* Top Header */
+.top-header {
+    padding-bottom: 10px;
+}
+
+.breadcrumb {
+    font-size: 0.9rem;
+}
+
+.breadcrumb i {
+    font-size: 0.7rem;
+}
+
+.avatar-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e0e0e0;
+}
+
+/* Page Title */
+.page-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+/* ============================================
+   STEPPER (Wizard de Etapas)
+   ============================================ */
+
+.stepper {
+    max-width: 700px;
+    margin: 0 auto 40px auto;
+    padding: 0 20px;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex: 0 0 auto;
+}
+
+.step-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #999;
+    background-color: white;
+    transition: 0.3s;
+}
+
+.step.active .step-circle {
+    background-color: #066106;
+    border-color: #066106;
+    color: white;
+}
+
+.step-label {
+    font-size: 0.85rem;
+    color: #999;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.step.active .step-label {
+    color: #066106;
+    font-weight: 600;
+}
+
+.step-line {
+    flex: 1;
+    height: 2px;
+    background-color: #e0e0e0;
+    margin: 0 10px;
+    margin-bottom: 25px;
+    min-width: 60px;
+}
+
+/* ============================================
+   MAP SECTION (Placeholder)
+   ============================================ */
+
+.map-section {
+    background-color: white;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.section-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.search-box {
+    position: relative;
+}
+
+.search-box i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.search-box input {
+    padding-left: 40px;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    height: 45px;
+    font-size: 0.9rem;
+}
+
+.search-box input:focus {
+    border-color: #066106;
+    box-shadow: 0 0 0 3px rgba(6, 97, 6, 0.1);
+}
+
+/* Map Placeholder */
+.map-placeholder {
+    width: 100%;
+    height: 400px;
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 50%, #a5d6a7 100%);
+    border-radius: 16px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Grid pattern simulando ruas */
+.map-placeholder::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0.5;
+}
+
+.map-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    z-index: 1;
+}
+
+.map-pin {
+    font-size: 3rem;
+    color: #066106;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+.map-city {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+}
+
+/* Map Controls */
+.map-controls {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+}
+
+.map-controls .btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    border: none;
+}
+
+.map-controls .btn i {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Use Location Button */
+.use-location {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 10px;
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border: none;
+    z-index: 2;
+}
+
+.use-location i {
+    margin-right: 6px;
+    color: #066106;
+}
+
+/* ============================================
+   ACTION BUTTONS
+   ============================================ */
+
+.action-buttons {
+    padding-top: 10px;
+}
+
+.btn-cancel {
+    border-radius: 10px;
+    padding: 10px 30px;
+    font-weight: 500;
+    border-color: #ccc;
+    color: #666;
+}
+
+.btn-cancel:hover {
+    background-color: #f0f0f0;
+    border-color: #bbb;
+}
+
+.btn-next {
+    background-color: #066106;
+    border-color: #066106;
+    border-radius: 10px;
+    padding: 10px 30px;
+    font-weight: 500;
+}
+
+.btn-next:hover {
+    background-color: #054d05;
+    border-color: #054d05;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 991px) {
+    .sidebar {
+        width: 240px;
+        min-width: 240px;
+    }
+
+    .step-label {
+        font-size: 0.75rem;
+    }
+
+    .map-placeholder {
+        height: 300px;
+    }
+}
+
+@media (max-width: 767px) {
+    .sidebar {
+        display: none;
+    }
+
+    .stepper {
+        padding: 0 10px;
+    }
+
+    .step-line {
+        min-width: 30px;
+    }
+}

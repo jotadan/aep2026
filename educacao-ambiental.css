@@ -1,0 +1,515 @@
+/* ============================================
+   ECOTECH - EDUCAÇÃO AMBIENTAL (Robusto)
+   ============================================ */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* ============================================
+   SIDEBAR (Compartilhado)
+   ============================================ */
+
+.logo-ecotech { width: 150px; margin: 20px 0; display: block; }
+.sidebar img { width: 100%; margin: 0 auto 20px auto; display: block; }
+
+.sidebar {
+    display: flex; gap: 15px;
+    width: 280px; min-width: 280px;
+    background-color: #fdfdfd;
+    border-right: 1px solid #eee;
+    flex-shrink: 0;
+}
+
+.sidebar .nav-link {
+    color: #333; font-weight: 500;
+    padding: 12px 20px; border-radius: 50px;
+    margin-bottom: 5px; transition: 0.3s;
+    display: flex; align-items: center;
+    text-decoration: none;
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+    color: white; background-color: #066106;
+}
+
+.sidebar-card {
+    background-color: #f4f7f4;
+    border-radius: 20px; color: #066106;
+    padding: 15px; margin: 0 auto;
+    border: 1px solid #eee;
+}
+.sidebar-card p { margin: 0 auto; max-width: 130px; }
+.sidebar-card i { font-size: 1.5rem; display: block; margin-bottom: 5px; }
+
+.nav-link i { margin-right: 12px; width: 24px; text-align: center; font-size: 1.1rem; }
+
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
+
+.main-content { background-color: #f8f9fa; overflow-y: auto; }
+
+.top-header { padding-bottom: 10px; }
+.breadcrumb { font-size: 0.9rem; }
+.breadcrumb i { font-size: 0.7rem; }
+.avatar-img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #e0e0e0; }
+
+.page-title { font-size: 1.8rem; font-weight: 700; color: #1a1a1a; }
+.page-subtitle { font-size: 0.95rem; }
+
+/* ============================================
+   HERO BANNER
+   ============================================ */
+
+.edu-hero {
+    background: linear-gradient(135deg, #066106 0%, #0a7a0a 50%, #0d8f0d 100%);
+    border-radius: 20px;
+    padding: 50px 45px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.edu-hero-title {
+    font-size: 2rem; font-weight: 700;
+    line-height: 1.3; margin-bottom: 15px;
+}
+
+.edu-hero-text {
+    font-size: 1rem; opacity: 0.9;
+    margin-bottom: 25px; line-height: 1.5;
+}
+
+.btn-explorar {
+    background-color: white; color: #066106;
+    border: none; border-radius: 25px;
+    padding: 12px 30px; font-weight: 600;
+    font-size: 0.95rem; transition: 0.3s;
+}
+.btn-explorar:hover {
+    background-color: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.edu-hero-facts {
+    display: flex; flex-direction: column; gap: 15px;
+}
+
+.fact-box {
+    background-color: rgba(255,255,255,0.15);
+    border-radius: 14px; padding: 18px;
+    backdrop-filter: blur(5px);
+    display: flex; align-items: flex-start; gap: 12px;
+}
+
+.fact-box i {
+    font-size: 1.5rem; color: #a8e6a3;
+    flex-shrink: 0; margin-top: 2px;
+}
+
+.fact-box p {
+    font-size: 0.9rem; line-height: 1.5;
+    margin-bottom: 0; opacity: 0.95;
+}
+
+.fact-box strong { font-weight: 700; }
+
+/* ============================================
+   TABS
+   ============================================ */
+
+.edu-tabs {
+    border-bottom: 1px solid #e0e0e0;
+    gap: 8px;
+}
+
+.edu-tabs .nav-link {
+    color: #666; font-weight: 500;
+    font-size: 0.9rem; padding: 10px 20px;
+    border: none; border-radius: 8px 8px 0 0;
+    background: transparent; transition: 0.3s;
+}
+
+.edu-tabs .nav-link:hover {
+    color: #066106;
+    background-color: rgba(6, 97, 6, 0.05);
+}
+
+.edu-tabs .nav-link.active {
+    color: #066106;
+    background-color: rgba(6, 97, 6, 0.08);
+    border-bottom: 2px solid #066106;
+    font-weight: 600;
+}
+
+/* ============================================
+   TIPOS DE RESÍDUOS
+   ============================================ */
+
+.tipo-card {
+    background-color: white;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    height: 100%;
+    transition: 0.3s;
+}
+
+.tipo-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.tipo-icon {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 16px;
+}
+
+.tipo-icon.azul    { background-color: #e3f2fd; color: #1976d2; }
+.tipo-icon.marrom  { background-color: #efebe9; color: #5d4037; }
+.tipo-icon.vermelho{ background-color: #ffebee; color: #d32f2f; }
+.tipo-icon.cinza   { background-color: #eceff1; color: #455a64; }
+.tipo-icon.laranja { background-color: #fff3e0; color: #ef6c00; }
+.tipo-icon.roxo    { background-color: #f3e5f5; color: #7b1fa2; }
+
+.tipo-card h5 {
+    font-size: 1.05rem; font-weight: 700;
+    color: #1a1a1a; margin-bottom: 10px;
+}
+
+.tipo-card p {
+    font-size: 0.88rem; color: #666;
+    line-height: 1.5; margin-bottom: 14px;
+}
+
+.tipo-lista {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 6px;
+}
+
+.tipo-lista li {
+    font-size: 0.85rem; color: #555;
+    display: flex; align-items: center; gap: 8px;
+}
+
+.tipo-lista li i {
+    color: #066106; font-size: 1rem;
+}
+
+/* ============================================
+   COMO SEPARAR
+   ============================================ */
+
+.separar-intro h4 { font-weight: 700; color: #1a1a1a; }
+
+.passo-card {
+    background-color: white;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    display: flex; gap: 18px;
+    height: 100%;
+}
+
+.passo-num {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background-color: #066106;
+    color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; font-weight: 700;
+    flex-shrink: 0;
+}
+
+.passo-conteudo h5 {
+    font-size: 1rem; font-weight: 700;
+    color: #1a1a1a; margin-bottom: 8px;
+}
+
+.passo-conteudo p {
+    font-size: 0.88rem; color: #666;
+    line-height: 1.5; margin-bottom: 12px;
+}
+
+.passo-dica {
+    background-color: #f4f7f4;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 0.85rem;
+    color: #555;
+    display: flex; align-items: flex-start; gap: 8px;
+}
+
+.passo-dica i { color: #066106; font-size: 1rem; margin-top: 2px; }
+
+.lixeiras-section h5 { font-weight: 700; color: #1a1a1a; }
+
+.lixeira-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    font-weight: 600; font-size: 0.9rem;
+}
+
+.lixeira-item i { font-size: 1.3rem; }
+.lixeira-item.azul    { color: #1976d2; }
+.lixeira-item.vermelho{ color: #d32f2f; }
+.lixeira-item.verde   { color: #388e3c; }
+.lixeira-item.amarelo { color: #f9a825; }
+.lixeira-item.marrom  { color: #5d4037; }
+.lixeira-item.cinza   { color: #455a64; }
+
+/* ============================================
+   IMPACTO AMBIENTAL
+   ============================================ */
+
+.impacto-hero h4 { font-weight: 700; color: #1a1a1a; }
+
+.impacto-card {
+    background-color: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    height: 100%;
+}
+
+.impacto-img {
+    height: 180px; overflow: hidden;
+}
+
+.impacto-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: 0.3s;
+}
+
+.impacto-card:hover .impacto-img img {
+    transform: scale(1.05);
+}
+
+.impacto-conteudo { padding: 22px; }
+
+.impacto-conteudo h5 {
+    font-size: 1rem; font-weight: 700;
+    color: #1a1a1a; margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px;
+}
+
+.impacto-conteudo h5 i { color: #066106; }
+
+.impacto-conteudo p {
+    font-size: 0.88rem; color: #666;
+    line-height: 1.5; margin-bottom: 14px;
+}
+
+.impacto-stat {
+    background-color: #f4f7f4;
+    border-radius: 10px;
+    padding: 12px 14px;
+    display: flex; align-items: center; gap: 10px;
+}
+
+.impacto-stat .stat-num {
+    font-size: 1.3rem; font-weight: 700;
+    color: #066106; flex-shrink: 0;
+}
+
+.impacto-stat .stat-txt {
+    font-size: 0.8rem; color: #555; line-height: 1.4;
+}
+
+/* ============================================
+   DICAS SUSTENTÁVEIS
+   ============================================ */
+
+.dica-sust-card {
+    background-color: white;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    height: 100%;
+    transition: 0.3s;
+}
+
+.dica-sust-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.dica-sust-icon {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    background-color: #e8f5e9;
+    color: #066106;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 16px;
+}
+
+.dica-sust-card h5 {
+    font-size: 1.05rem; font-weight: 700;
+    color: #1a1a1a; margin-bottom: 10px;
+}
+
+.dica-sust-card p {
+    font-size: 0.88rem; color: #666;
+    line-height: 1.5; margin-bottom: 14px;
+}
+
+.dica-tag {
+    display: inline-block;
+    background-color: #f4f7f4;
+    color: #066106;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+/* ============================================
+   QUIZ ECO
+   ============================================ */
+
+.quiz-card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.quiz-icon {
+    font-size: 3rem;
+    color: #066106;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.quiz-header h4 { font-weight: 700; color: #1a1a1a; }
+
+.pergunta-texto {
+    font-size: 1rem; font-weight: 600;
+    color: #333; margin-bottom: 15px;
+}
+
+.quiz-opcoes {
+    display: flex; flex-direction: column; gap: 10px;
+}
+
+.quiz-opcao {
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    background-color: white;
+    text-align: left;
+    font-size: 0.95rem;
+    color: #333;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.quiz-opcao:hover {
+    border-color: #066106;
+    background-color: #f4f7f4;
+}
+
+.quiz-opcao.correta {
+    background-color: #e8f5e9;
+    border-color: #4caf50;
+    color: #2e7d32;
+    font-weight: 600;
+}
+
+.resultado-box {
+    background: linear-gradient(135deg, #066106 0%, #0a7a0a 100%);
+    color: white;
+    border-radius: 16px;
+    padding: 25px 35px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.resultado-num {
+    font-size: 2.5rem; font-weight: 700;
+}
+
+.resultado-txt {
+    font-size: 1rem;
+}
+
+/* ============================================
+   FAQ
+   ============================================ */
+
+.faq-title { font-weight: 700; color: #1a1a1a; }
+
+.accordion-item {
+    border: none;
+    border-bottom: 1px solid #f0f0f0;
+    background-color: transparent;
+}
+
+.accordion-button {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #333;
+    background-color: white;
+    border-radius: 12px !important;
+    padding: 18px 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    margin-bottom: 8px;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #f4f7f4;
+    color: #066106;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.accordion-button:focus {
+    box-shadow: 0 0 0 3px rgba(6, 97, 6, 0.1);
+    border-color: #066106;
+}
+
+.accordion-body {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.6;
+    padding: 0 20px 18px 20px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 991px) {
+    .sidebar { width: 240px; min-width: 240px; }
+    .edu-hero { padding: 35px 25px; }
+    .edu-hero-title { font-size: 1.6rem; }
+    .edu-tabs .nav-link { padding: 8px 14px; font-size: 0.85rem; }
+}
+
+@media (max-width: 767px) {
+    .sidebar { display: none; }
+    .edu-hero { padding: 30px 20px; text-align: center; }
+    .edu-hero-title { font-size: 1.4rem; }
+    .edu-hero-facts { margin-top: 20px; }
+    .edu-tabs { flex-wrap: nowrap; overflow-x: auto; gap: 4px; }
+    .edu-tabs .nav-link { white-space: nowrap; padding: 8px 12px; font-size: 0.8rem; }
+    .quiz-card { padding: 25px; }
+    .passo-card { flex-direction: column; gap: 12px; }
+    .impacto-card { margin-bottom: 15px; }
+}

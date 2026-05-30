@@ -1,0 +1,447 @@
+/* ============================================
+   ECOTECH - CONFIGURAÇÕES
+   ============================================ */
+
+/* Reset e Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* ============================================
+   SIDEBAR (Estilo Compartilhado)
+   ============================================ */
+
+.logo-ecotech {
+    width: 150px;
+    margin: 20px 0;
+    display: block;
+}
+
+.sidebar img {
+    width: 100%;
+    margin: 0 auto 20px auto;
+    display: block;
+}
+
+/* Configuração Base da Sidebar */
+.sidebar {
+    display: flex;
+    gap: 15px;
+    width: 280px;
+    min-width: 280px;
+    background-color: #fdfdfd;
+    border-right: 1px solid #eee;
+    flex-shrink: 0;
+}
+
+.sidebar .nav-link {
+    color: #333;
+    font-weight: 500;
+    padding: 12px 20px;
+    border-radius: 50px;
+    margin-bottom: 5px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+/* Hover e Item Ativo (Fundo Verde Escuro) */
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+    color: white;
+    background-color: #066106;
+}
+
+/* Card de Destaque */
+.sidebar-card {
+    background-color: #f4f7f4;
+    border-radius: 20px;
+    color: #066106;
+    padding: 15px;
+    margin: 0 auto;
+    border: 1px solid #eee;
+}
+
+.sidebar-card p {
+    margin: 0 auto;
+    max-width: 130px;
+}
+
+.sidebar-card i {
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Ajuste dos ícones */
+.nav-link i {
+    margin-right: 12px;
+    width: 24px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
+
+.main-content {
+    background-color: #f8f9fa;
+    overflow-y: auto;
+}
+
+/* Top Header */
+.top-header {
+    padding-bottom: 10px;
+}
+
+.breadcrumb {
+    font-size: 0.9rem;
+}
+
+.breadcrumb i {
+    font-size: 0.7rem;
+}
+
+.avatar-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e0e0e0;
+}
+
+/* Page Title */
+.page-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+/* ============================================
+   CONFIG MENU CARD
+   ============================================ */
+
+.config-menu-card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 15px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.config-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-bottom: 5px;
+}
+
+.config-menu-item:last-child {
+    margin-bottom: 0;
+}
+
+.config-menu-item:hover {
+    background-color: #f8f9fa;
+}
+
+.config-menu-item.active {
+    background-color: #066106;
+    color: white;
+}
+
+.config-menu-item.active .config-menu-desc {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.config-menu-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #555;
+    flex-shrink: 0;
+    transition: 0.3s;
+}
+
+.config-menu-item.active .config-menu-icon {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.config-menu-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.config-menu-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.config-menu-desc {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* ============================================
+   CONFIG CARD
+   ============================================ */
+
+.config-card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.config-card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 5px;
+}
+
+.config-card-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+/* Form Controls */
+.form-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.form-control {
+    height: 48px;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    font-size: 0.9rem;
+    padding: 10px 16px;
+    background-color: white;
+    color: #333;
+    transition: 0.3s;
+}
+
+.form-control:focus {
+    border-color: #066106;
+    box-shadow: 0 0 0 3px rgba(6, 97, 6, 0.1);
+}
+
+/* Preference Items */
+.preference-item {
+    padding: 18px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.preference-item:last-child {
+    border-bottom: none;
+}
+
+.preference-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.preference-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.preference-desc {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.preference-select {
+    width: auto;
+    min-width: 180px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    font-size: 0.85rem;
+    padding: 5px 12px;
+    cursor: pointer;
+}
+
+.preference-select:focus {
+    border-color: #066106;
+    box-shadow: 0 0 0 3px rgba(6, 97, 6, 0.1);
+}
+
+/* Switch Toggle */
+.form-check-input {
+    width: 48px;
+    height: 26px;
+    cursor: pointer;
+    background-color: #ccc;
+    border-color: #ccc;
+}
+
+.form-check-input:checked {
+    background-color: #066106;
+    border-color: #066106;
+}
+
+.form-check-input:focus {
+    box-shadow: 0 0 0 3px rgba(6, 97, 6, 0.2);
+    border-color: #066106;
+}
+
+/* Security Items */
+.security-item {
+    padding: 18px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.security-item:last-child {
+    border-bottom: none;
+}
+
+.security-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.security-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.security-desc {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.btn-sm {
+    border-radius: 8px;
+    padding: 6px 16px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.btn-outline-success {
+    border-color: #066106;
+    color: #066106;
+}
+
+.btn-outline-success:hover {
+    background-color: #066106;
+    color: white;
+}
+
+/* ============================================
+   ACTION BUTTONS
+   ============================================ */
+
+.action-buttons {
+    padding-top: 10px;
+}
+
+.btn-cancel {
+    border-radius: 10px;
+    padding: 12px 30px;
+    font-weight: 500;
+    border-color: #ccc;
+    color: #666;
+}
+
+.btn-cancel:hover {
+    background-color: #f0f0f0;
+    border-color: #bbb;
+}
+
+.btn-save {
+    background-color: #066106;
+    border-color: #066106;
+    border-radius: 10px;
+    padding: 12px 30px;
+    font-weight: 500;
+}
+
+.btn-save:hover {
+    background-color: #054d05;
+    border-color: #054d05;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 991px) {
+    .sidebar {
+        width: 240px;
+        min-width: 240px;
+    }
+
+    .config-menu-item {
+        padding: 12px;
+    }
+
+    .preference-select {
+        min-width: 150px;
+    }
+}
+
+@media (max-width: 767px) {
+    .sidebar {
+        display: none;
+    }
+
+    .config-card {
+        padding: 20px;
+    }
+
+    .config-menu-card {
+        padding: 10px;
+    }
+
+    .preference-item {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 10px;
+    }
+
+    .security-item {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 10px;
+    }
+
+    .preference-select {
+        width: 100%;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .action-buttons .btn {
+        width: 100%;
+    }
+}

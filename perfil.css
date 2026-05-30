@@ -1,0 +1,449 @@
+/* ============================================
+   ECOTECH - PERFIL
+   ============================================ */
+
+/* Reset e Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* ============================================
+   SIDEBAR (Estilo Compartilhado)
+   ============================================ */
+
+.logo-ecotech {
+    width: 150px;
+    margin: 20px 0;
+    display: block;
+}
+
+.sidebar img {
+    width: 100%;
+    margin: 0 auto 20px auto;
+    display: block;
+}
+
+/* Configuração Base da Sidebar */
+.sidebar {
+    display: flex;
+    gap: 15px;
+    width: 280px;
+    min-width: 280px;
+    background-color: #fdfdfd;
+    border-right: 1px solid #eee;
+    flex-shrink: 0;
+}
+
+.sidebar .nav-link {
+    color: #333;
+    font-weight: 500;
+    padding: 12px 20px;
+    border-radius: 50px;
+    margin-bottom: 5px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+/* Hover e Item Ativo (Fundo Verde Escuro) */
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+    color: white;
+    background-color: #066106;
+}
+
+/* Card de Destaque */
+.sidebar-card {
+    background-color: #f4f7f4;
+    border-radius: 20px;
+    color: #066106;
+    padding: 15px;
+    margin: 0 auto;
+    border: 1px solid #eee;
+}
+
+.sidebar-card p {
+    margin: 0 auto;
+    max-width: 130px;
+}
+
+.sidebar-card i {
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Ajuste dos ícones */
+.nav-link i {
+    margin-right: 12px;
+    width: 24px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
+
+.main-content {
+    background-color: #f8f9fa;
+    overflow-y: auto;
+}
+
+/* Top Header */
+.top-header {
+    padding-bottom: 10px;
+}
+
+.breadcrumb {
+    font-size: 0.9rem;
+}
+
+.breadcrumb i {
+    font-size: 0.7rem;
+}
+
+/* User Profile */
+.notification-icon {
+    position: relative;
+    cursor: pointer;
+}
+
+.notification-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 18px;
+    height: 18px;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 50%;
+    font-size: 0.65rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e0e0e0;
+}
+
+.user-name {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+/* Page Title */
+.page-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+/* ============================================
+   PERFIL CARD
+   ============================================ */
+
+.perfil-card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 35px 25px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    text-align: center;
+}
+
+.perfil-avatar-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.perfil-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #e8f5e9;
+}
+
+.btn-editar {
+    border-radius: 12px;         /* Bordas levemente mais arredondadas combinando com os inputs */
+    padding: 10px 24px;          /* Aumentado o espaçamento interno (antigo era 8px 20px) */
+    font-size: 0.95rem;          /* Aumentado o tamanho da fonte (antigo era 0.85rem) */
+    font-weight: 600;            /* Deixou o texto ligeiramente mais encorpado */
+    border-color: #066106;
+    color: #066106;
+    transition: all 0.3s ease;   /* Transição suave para efeitos de hover */
+}
+
+.btn-editar:hover {
+    background-color: #066106;
+    color: white;
+    transform: translateY(-1px); /* Pequeno efeito de elevação ao passar o mouse */
+}
+
+.btn-editar i {
+    margin-right: 8px;           /* Espaçamento do ícone levemente aumentado */
+}
+
+.perfil-nome {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 5px;
+}
+
+.perfil-email {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 15px;
+}
+
+.perfil-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #e8f5e9;
+    color: #066106;
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.perfil-badge i {
+    font-size: 1rem;
+}
+
+/* Stats */
+.perfil-stats {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.stat-num {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #066106;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: #888;
+    font-weight: 500;
+}
+
+/* ============================================
+   CONQUISTAS CARD
+   ============================================ */
+
+.conquistas-card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.conquistas-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.conquistas-title i {
+    color: #f57c00;
+}
+
+.conquistas-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.conquista-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px;
+    border-radius: 12px;
+    background-color: #fafafa;
+    transition: 0.3s;
+}
+
+.conquista-item:hover {
+    background-color: #f0f0f0;
+}
+
+.conquista-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1.2rem;
+}
+
+.conquista-icon.bronze {
+    background-color: #fff3e0;
+    color: #e65100;
+}
+
+.conquista-icon.prata {
+    background-color: #eceff1;
+    color: #546e7a;
+}
+
+.conquista-icon.ouro {
+    background-color: #fffde7;
+    color: #f9a825;
+}
+
+.conquista-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.conquista-nome {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.conquista-desc {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* ============================================
+   FORM CARDS
+   ============================================ */
+
+.form-card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.form-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 0;
+}
+
+.btn-editar {
+    border-radius: 10px;
+    padding: 8px 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-color: #066106;
+    color: #066106;
+}
+
+.btn-editar:hover {
+    background-color: #066106;
+    color: white;
+}
+
+.btn-editar i {
+    margin-right: 6px;
+}
+
+/* Form Controls */
+.form-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.form-control {
+    height: 48px;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    font-size: 0.9rem;
+    padding: 10px 16px;
+    background-color: #fafafa;
+    color: #555;
+}
+
+.form-control:focus {
+    border-color: #066106;
+    box-shadow: 0 0 0 3px rgba(6, 97, 6, 0.1);
+    background-color: white;
+}
+
+.form-control[readonly] {
+    background-color: #f5f5f5;
+    cursor: default;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 991px) {
+    .sidebar {
+        width: 240px;
+        min-width: 240px;
+    }
+
+    .perfil-avatar {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media (max-width: 767px) {
+    .sidebar {
+        display: none;
+    }
+
+    .perfil-card {
+        padding: 25px 20px;
+    }
+
+    .form-card {
+        padding: 20px;
+    }
+
+    .stat-num {
+        font-size: 1.2rem;
+    }
+
+    .conquista-item {
+        padding: 10px;
+    }
+}

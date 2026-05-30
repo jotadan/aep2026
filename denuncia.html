@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTech - Nova Denúncia</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="denuncia.css">
+</head>
+
+<body>
+    <div class="d-flex vh-100">
+        <!-- Sidebar -->
+        <nav class="sidebar vh-100 p-3 d-flex flex-column">
+            <img src="imagens/logo.png" alt="Logo Ecotech" class="mb-4 logo-ecotech">
+
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-house"></i>Início</a></li>
+                <li class="nav-item"><a href="#" class="nav-link active"><i class="bi bi-bell"></i>Fazer Denúncia</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-clipboard-plus"></i>Minhas denúncias</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-leaf"></i>Painel pessoal</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-mortarboard"></i>Educação ambiental</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-geo-alt"></i>Locais de coleta</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-person"></i>Perfil</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-gear"></i>Configurações</a></li>
+            </ul>
+
+            <div class="sidebar-card text-center p-3 mb-4">
+                <img src="imagens/leaf.svg" class="mb-4" style="width: 20%;">
+                <p class="fw-bold">Cada denúncia faz a diferença!</p>
+                <small>Graças a você, nossa cidade<br> fica mais limpa e sustentável.</small>
+            </div>
+
+            <a href="#" class="nav-link mt-auto"><i class="bi bi-box-arrow-right"></i> Sair</a>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content flex-fill p-4">
+            <!-- Top Header -->
+            <div class="top-header d-flex justify-content-between align-items-center mb-4">
+                <div class="breadcrumb text-muted small">
+                    <span>Início</span>
+                    <i class="bi bi-chevron-right mx-2"></i>
+                    <span class="fw-semibold text-dark">Fazer Denúncia</span>
+                </div>
+                <div class="user-profile d-flex align-items-center gap-2">
+                    <i class="bi bi-bell fs-5 text-muted"></i>
+                    <img src="imagens/avatar.png" alt="Avatar" class="avatar-img">
+                </div>
+            </div>
+
+            <!-- Page Title -->
+            <h2 class="page-title mb-4">Fazer Denúncia</h2>
+
+            <!-- Stepper -->
+            <div class="stepper d-flex justify-content-between align-items-center mb-5">
+                <div class="step active">
+                    <div class="step-circle">1</div>
+                    <span class="step-label">Localização</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step">
+                    <div class="step-circle">2</div>
+                    <span class="step-label">Categoria</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step">
+                    <div class="step-circle">3</div>
+                    <span class="step-label">Detalhes</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step">
+                    <div class="step-circle">4</div>
+                    <span class="step-label">Revisão</span>
+                </div>
+            </div>
+
+            <!-- Map Section -->
+            <div class="map-section">
+                <h5 class="section-title mb-3">Selecione o local da ocorrência</h5>
+
+                <div class="search-box mb-3">
+                    <i class="bi bi-search"></i>
+                    <input type="text" class="form-control" placeholder="Buscar endereço no mapa">
+                </div>
+
+                <div class="map-placeholder">
+                    <div class="map-content">
+                        <i class="bi bi-geo-alt-fill map-pin"></i>
+                        <span class="map-city">Maringá</span>
+                    </div>
+                    <div class="map-controls">
+                        <button class="btn btn-light btn-sm mb-2"><i class="bi bi-plus-lg"></i></button>
+                        <button class="btn btn-light btn-sm"><i class="bi bi-dash-lg"></i></button>
+                    </div>
+                    <button class="btn btn-light btn-sm use-location">
+                        <i class="bi bi-geo-alt"></i>
+                        Usar minha localização
+                    </button>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons d-flex justify-content-end gap-3 mt-4">
+                <button class="btn btn-outline-secondary btn-cancel">Cancelar</button>
+                <button class="btn btn-success btn-next">Próximo</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

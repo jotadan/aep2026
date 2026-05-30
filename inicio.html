@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTech - Início</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="inicio.css">
+</head>
+
+<body>
+    <div class="d-flex vh-100">
+        <!-- Sidebar -->
+        <nav class="sidebar vh-100 p-3 d-flex flex-column">
+            <img src="imagens/logo.png" alt="Logo Ecotech" class="mb-4 logo-ecotech">
+
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item"><a href="#" class="nav-link active"><i class="bi bi-house"></i>Início</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-bell"></i>Nova Denúncia</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-clipboard-plus"></i>Minhas denúncias</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-leaf"></i>Painel pessoal</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-mortarboard"></i>Educação ambiental</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-geo-alt"></i>Locais de coleta</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-person"></i>Perfil</a></li>
+                <li class="nav-item"><a href="#" class="nav-link"><i class="bi bi-gear"></i>Configurações</a></li>
+            </ul>
+
+            <div class="sidebar-card text-center p-3 mb-4">
+                <img src="imagens/leaf.svg" class="mb-4" style="width: 20%;">
+                <p class="fw-bold">Cada denúncia faz a diferença!</p>
+                <small>Graças a você, nossa cidade<br> fica mais limpa e sustentável.</small>
+            </div>
+
+            <a href="#" class="nav-link mt-auto"><i class="bi bi-box-arrow-right"></i> Sair</a>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content flex-fill p-4">
+            <!-- Top Header -->
+            <div class="top-header d-flex justify-content-between align-items-center mb-4">
+                <div class="breadcrumb text-muted small">
+                    <span class="fw-semibold text-dark">Início</span>
+                </div>
+                <div class="user-profile d-flex align-items-center gap-2">
+                    <i class="bi bi-bell fs-5 text-muted"></i>
+                    <img src="imagens/avatar.png" alt="Avatar" class="avatar-img">
+                </div>
+            </div>
+
+            <!-- Saudação -->
+            <div class="saudacao mb-4">
+                <h2 class="saudacao-titulo">Bem-vinda de volta, João! 👋</h2>
+                <p class="saudacao-sub text-muted">Juntos por uma cidade mais limpa e sustentável.</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="row g-3 mb-4">
+                <div class="col-md-3 col-sm-6">
+                    <div class="stat-card verde">
+                        <span class="stat-num">12</span>
+                        <span class="stat-desc">Denúncias realizadas</span>
+                        <a href="#" class="stat-link">Ver histórico <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="stat-card azul">
+                        <span class="stat-num">8</span>
+                        <span class="stat-desc">Em andamento</span>
+                        <a href="#" class="stat-link">Acompanhar <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="stat-card amarelo">
+                        <span class="stat-num">4</span>
+                        <span class="stat-desc">Concluídas</span>
+                        <a href="#" class="stat-link">Ver resultados <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="stat-card roxo">
+                        <span class="stat-num">1.250 kg</span>
+                        <span class="stat-desc">Resíduos impactados</span>
+                        <a href="#" class="stat-link">Saiba mais <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row: Denúncias + Mapa -->
+            <div class="row g-4 mb-4">
+                <!-- Denúncias Recentes -->
+                <div class="col-lg-7">
+                    <div class="denuncias-card">
+                        <h5 class="section-title mb-3">Suas denúncias recentes</h5>
+
+                        <div class="denuncia-lista">
+                            <div class="denuncia-row d-flex align-items-center gap-3">
+                                <img src="imagens/denuncia1.jpg" class="denuncia-thumb" alt="Entulho">
+                                <div class="denuncia-info flex-fill">
+                                    <div class="denuncia-cat">Entulho / Construção</div>
+                                    <div class="denuncia-end">Av. Colombo, 4230 - Zona 7, Maringá - PR</div>
+                                </div>
+                                <span class="badge-status andamento">Em andamento</span>
+                                <span class="denuncia-data">20/05/2025</span>
+                            </div>
+
+                            <div class="denuncia-row d-flex align-items-center gap-3">
+                                <img src="imagens/denuncia2.jpg" class="denuncia-thumb" alt="Móveis">
+                                <div class="denuncia-info flex-fill">
+                                    <div class="denuncia-cat">Móveis / Madeira</div>
+                                    <div class="denuncia-end">R. Pioneiro Antônio França de Morais, 256 - Maringá - PR</div>
+                                </div>
+                                <span class="badge-status andamento">Em andamento</span>
+                                <span class="denuncia-data">18/05/2025</span>
+                            </div>
+
+                            <div class="denuncia-row d-flex align-items-center gap-3">
+                                <img src="imagens/denuncia3.jpg" class="denuncia-thumb" alt="Plásticos">
+                                <div class="denuncia-info flex-fill">
+                                    <div class="denuncia-cat">Plásticos</div>
+                                    <div class="denuncia-end">Av. Mandacaru, 1380 - Maringá - PR</div>
+                                </div>
+                                <span class="badge-status concluida">Concluída</span>
+                                <span class="denuncia-data">12/05/2025</span>
+                            </div>
+
+                            <div class="denuncia-row d-flex align-items-center gap-3">
+                                <img src="imagens/denuncia4.jpg" class="denuncia-thumb" alt="Eletrônicos">
+                                <div class="denuncia-info flex-fill">
+                                    <div class="denuncia-cat">Eletrônicos</div>
+                                    <div class="denuncia-end">R. das Azaléias, 88 - Maringá - PR</div>
+                                </div>
+                                <span class="badge-status concluida">Concluída</span>
+                                <span class="denuncia-data">05/05/2025</span>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-ver-todas w-100 mt-3">Ver todas as denúncias</button>
+                    </div>
+                </div>
+
+                <!-- Mapa -->
+                <div class="col-lg-5">
+                    <div class="mapa-card">
+                        <h5 class="section-title mb-3">Denúncias no mapa</h5>
+                        <div class="mapa-mini">
+                            <div class="mapa-grid"></div>
+                            <div class="mapa-pin pin-laranja" style="top: 20%; left: 30%;"><i class="bi bi-geo-alt-fill"></i></div>
+                            <div class="mapa-pin pin-laranja" style="top: 35%; left: 60%;"><i class="bi bi-geo-alt-fill"></i></div>
+                            <div class="mapa-pin pin-verde" style="top: 55%; left: 45%;"><i class="bi bi-geo-alt-fill"></i></div>
+                            <div class="mapa-pin pin-roxo" style="top: 70%; left: 75%;"><i class="bi bi-geo-alt-fill"></i></div>
+                            <span class="mapa-cidade">Maringá</span>
+                        </div>
+                        <div class="mapa-legenda d-flex gap-3 mt-3">
+                            <span class="legenda-item"><span class="legenda-dot laranja"></span> Em andamento</span>
+                            <span class="legenda-item"><span class="legenda-dot verde"></span> Concluída</span>
+                            <span class="legenda-item"><span class="legenda-dot roxo"></span> Recebida</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row: Diferença + Dica -->
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="diferenca-card d-flex align-items-center gap-4">
+                        <div class="diferenca-texto">
+                            <h5>Você está fazendo a diferença! 🌍</h5>
+                            <p class="text-muted mb-0">Cada denúncia ajuda a construir uma cidade mais limpa e consciente.</p>
+                        </div>
+                        <div class="diferenca-img">
+                            <img src="imagens/ilustra-reciclagem.png" alt="Reciclagem">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="dica-card d-flex align-items-center gap-4">
+                        <div class="dica-texto">
+                            <h5>Dica ambiental do dia</h5>
+                            <p class="text-muted mb-3">Separe corretamente seus resíduos recicláveis e contribua para um futuro mais sustentável!</p>
+                            <button class="btn btn-dica">Saiba mais</button>
+                        </div>
+                        <div class="dica-img">
+                            <img src="imagens/folha-dica.png" alt="Folha">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
