@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoTech - Revisar Denúncia</title>
+    <title>EcoTech - Detalhes da Denúncia</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="dark-mode.css">
+    <link rel="stylesheet" href="../CSS/main.css">
+    <link rel="stylesheet" href="../CSS/dark-mode.css">
     <style>
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
@@ -54,39 +52,45 @@
         .step.done .step-circle i { font-size: 1rem; }
         .step.done .step-line::after { width: 100%; }
 
-        /* Review Card */
-        .review-card { background-color: var(--color-surface); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); padding: var(--space-8); border: 1px solid var(--color-border-subtle); transition: var(--transition-normal); position: relative; overflow: hidden; }
-        .review-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); border-color: var(--color-border); }
-        .review-section { margin-bottom: var(--space-6); }
-        .review-section:last-child { margin-bottom: 0; }
-        .review-label { font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold); color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--space-2); display: flex; align-items: center; gap: var(--space-2); }
-        .review-label i { font-size: 1rem; color: var(--color-primary); }
-        .review-value { font-size: var(--font-size-base); color: var(--color-text-primary); font-weight: var(--font-weight-medium); line-height: var(--line-height-normal); }
-        .review-value.descricao { background: var(--color-bg-alt); padding: var(--space-4); border-radius: var(--radius-md); border: 1px solid var(--color-border-subtle); font-size: var(--font-size-sm); }
-        .review-divider { height: 1px; background: var(--color-border-subtle); margin: var(--space-6) 0; }
+        /* Form Card */
+        .form-card { background-color: var(--color-surface); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); padding: var(--space-8); border: 1px solid var(--color-border-subtle); transition: var(--transition-normal); position: relative; overflow: hidden; }
+        .form-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); border-color: var(--color-border); }
 
-        /* Mini Map */
-        #mapa-revisao { height: 220px; width: 100%; border-radius: var(--radius-md); z-index: 1; }
-        .mapa-revisao-wrapper { border-radius: var(--radius-md); overflow: hidden; border: 2px solid var(--color-border-subtle); transition: all 0.3s ease; }
-        .mapa-revisao-wrapper:hover { border-color: var(--color-primary-light); box-shadow: var(--shadow-md); }
+        /* Upload Zone */
+        .upload-zone { border: 2px dashed var(--color-border); border-radius: var(--radius-lg); padding: var(--space-10) var(--space-6); text-align: center; cursor: pointer; transition: all 0.3s ease; background: var(--color-bg-alt); position: relative; overflow: hidden; }
+        .upload-zone:hover { border-color: var(--color-primary); background: var(--color-primary-subtle); transform: translateY(-2px); box-shadow: var(--shadow-glow-primary); }
+        .upload-zone.dragover { border-color: var(--color-primary); background: var(--color-primary-subtle); box-shadow: var(--shadow-glow-primary); transform: scale(1.01); }
+        .upload-zone i { font-size: 3rem; color: var(--color-text-light); transition: all 0.3s ease; margin-bottom: var(--space-3); display: block; }
+        .upload-zone:hover i { color: var(--color-primary); transform: scale(1.1); }
+        .upload-zone p { color: var(--color-text-secondary); font-weight: var(--font-weight-medium); margin: 0; }
+        .upload-zone small { color: var(--color-text-muted); font-size: var(--font-size-xs); }
 
-        /* Photo Grid Review */
-        .photo-review-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: var(--space-3); }
-        .photo-review-item { border-radius: var(--radius-md); overflow: hidden; aspect-ratio: 1; box-shadow: var(--shadow-sm); border: 2px solid var(--color-border-subtle); transition: all 0.3s ease; cursor: pointer; }
-        .photo-review-item:hover { transform: translateY(-4px) scale(1.02); box-shadow: var(--shadow-md); border-color: var(--color-primary-light); }
-        .photo-review-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
-        .photo-review-item:hover img { transform: scale(1.08); }
+        /* Photo Preview Grid */
+        .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: var(--space-3); margin-top: var(--space-4); }
+        .photo-item { position: relative; border-radius: var(--radius-md); overflow: hidden; aspect-ratio: 1; box-shadow: var(--shadow-sm); transition: all 0.3s ease; border: 2px solid var(--color-border-subtle); }
+        .photo-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--color-primary-light); }
+        .photo-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+        .photo-item:hover img { transform: scale(1.05); }
+        .photo-item .remove-photo { position: absolute; top: 6px; right: 6px; width: 28px; height: 28px; background: rgba(220,38,38,0.9); color: white; border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; transition: all 0.2s ease; opacity: 0; transform: scale(0.8); }
+        .photo-item:hover .remove-photo { opacity: 1; transform: scale(1); }
+        .photo-item .remove-photo:hover { background: #b91c1c; transform: scale(1.1); }
 
-        /* Submit Button */
-        .btn-enviar { background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%); border: none; color: white; padding: 14px var(--space-10); font-size: var(--font-size-lg); font-weight: var(--font-weight-bold); border-radius: var(--radius-md); box-shadow: 0 4px 14px rgba(21, 128, 61, 0.25), 0 0 0 1px rgba(255,255,255,0.1) inset; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); display: inline-flex; align-items: center; gap: var(--space-3); cursor: pointer; position: relative; overflow: hidden; }
-        .btn-enviar:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(21, 128, 61, 0.35); }
-        .btn-enviar:active { transform: translateY(0); }
-        .btn-enviar.loading { pointer-events: none; opacity: 0.8; }
-        .btn-enviar.loading::after { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.15); }
-        .btn-enviar .spinner { display: none; animation: spin 1s linear infinite; }
-        .btn-enviar.loading .spinner { display: inline-block; }
-        .btn-enviar.loading .btn-text { opacity: 0.7; }
-        @keyframes spin { to { transform: rotate(360deg); } }
+        /* Form Controls Enhanced */
+        .form-label { color: var(--color-text-secondary); font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-2); display: flex; align-items: center; gap: var(--space-1); }
+        .form-control, .form-select { background-color: var(--color-surface-alt); border: 1.5px solid var(--color-border); border-radius: var(--radius-md); color: var(--color-text-primary); font-size: var(--font-size-base); padding: 12px var(--space-5); transition: var(--transition-normal); box-shadow: var(--shadow-inner); }
+        .form-control::placeholder { color: var(--color-text-light); }
+        .form-control:hover, .form-select:hover { border-color: var(--color-border-strong); background-color: var(--color-surface); }
+        .form-control:focus, .form-select:focus { background-color: var(--color-surface); border-color: var(--color-primary); box-shadow: var(--shadow-glow-primary); outline: none; color: var(--color-text-primary); }
+        textarea.form-control { min-height: 140px; resize: vertical; }
+        .form-select { height: 50px; cursor: pointer; }
+
+        /* Info Preview */
+        .info-preview { background: linear-gradient(135deg, var(--color-primary-subtle) 0%, var(--color-primary-light) 100%); border-radius: var(--radius-lg); padding: var(--space-5) var(--space-6); border: 1px solid rgba(21,128,61,0.1); margin-bottom: var(--space-6); }
+        .info-preview .info-row { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-3); }
+        .info-preview .info-row:last-child { margin-bottom: 0; }
+        .info-preview i { color: var(--color-primary); font-size: 1.1rem; width: 24px; text-align: center; }
+        .info-preview span { color: var(--color-text-primary); font-weight: var(--font-weight-medium); font-size: var(--font-size-sm); }
+        .info-preview small { color: var(--color-text-muted); font-size: var(--font-size-xs); display: block; margin-left: 36px; }
 
         /* Toast */
         .toast-container { bottom: var(--space-7); position: fixed; right: var(--space-7); z-index: 9999; display: flex; flex-direction: column; gap: var(--space-3); }
@@ -105,23 +109,18 @@
         .toast-close:hover { background-color: var(--color-bg-alt); color: var(--color-text-secondary); }
         @keyframes slideInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
 
-        /* Dark mode map */
-        .dark .leaflet-popup-content-wrapper, .dark .leaflet-popup-tip { background: var(--color-surface); border-color: var(--color-border); color: var(--color-text-primary); }
-        .dark .leaflet-container { background: var(--color-bg); }
-
         @media (max-width: 991px) {
             .sidebar { position: fixed; left: 0; top: 0; z-index: 1040; transform: translateX(-100%); box-shadow: var(--shadow-xl); }
             .sidebar.open { transform: translateX(0); }
             .mobile-menu-btn { display: flex; }
             .main-content { padding: var(--space-5); }
-            .review-card { padding: var(--space-6); }
+            .form-card { padding: var(--space-6); }
         }
         @media (max-width: 767px) {
             .stepper { padding: 0 var(--space-2); }
             .step-label { font-size: 0.65rem; }
             .step-line { min-width: 20px; margin: 0 var(--space-2); }
-            #mapa-revisao { height: 180px; }
-            .photo-review-grid { grid-template-columns: repeat(3, 1fr); }
+            .photo-grid { grid-template-columns: repeat(3, 1fr); }
             .toast-container { left: var(--space-4); right: var(--space-4); bottom: var(--space-4); }
             .toast { max-width: 100%; }
         }
@@ -134,7 +133,7 @@
     <div class="d-flex vh-100">
         <nav class="sidebar vh-100 p-3 d-flex flex-column" id="sidebar">
             <div class="d-flex align-items-center justify-content-between mb-4">
-                <img src="imagens/logo.png" alt="Logo Ecotech" class="logo-ecotech" style="margin: 0; width: 140px;">
+                <img src="../imagens/logo.png" alt="Logo Ecotech" class="logo-ecotech" style="margin: 0; width: 140px;">
                 <button class="btn-close d-lg-none" id="closeSidebar" aria-label="Fechar menu"></button>
             </div>
             <ul class="nav flex-column mb-auto">
@@ -163,16 +162,16 @@
                         <div class="breadcrumb text-muted small mb-1">
                             <span>Início</span><i class="bi bi-chevron-right mx-2" style="font-size: 0.6rem;"></i>
                             <span>Nova Denúncia</span><i class="bi bi-chevron-right mx-2" style="font-size: 0.6rem;"></i>
-                            <span class="fw-semibold">Revisão</span>
+                            <span class="fw-semibold">Detalhes</span>
                         </div>
-                        <div class="page-title" style="font-size: var(--font-size-lg); margin: 0;">Revisar Denúncia</div>
+                        <div class="page-title" style="font-size: var(--font-size-lg); margin: 0;">Detalhes</div>
                     </div>
                 </div>
                 <div class="d-flex align-items-center gap-3">
                     <button class="theme-toggle" id="themeToggle" title="Alternar tema"><i class="bi bi-moon-stars-fill" id="themeIcon"></i></button>
                     <div class="notification-wrapper has-notification" id="notifBtn"><i class="bi bi-bell fs-5"></i><span class="notification-badge">3</span></div>
                     <div class="d-flex align-items-center gap-2" style="cursor: pointer;">
-                        <img src="imagens/avatar.png" alt="Avatar" class="avatar-img">
+                        <img src="../imagens/avatar.png" alt="Avatar" class="avatar-img">
                         <div class="d-none d-md-block">
                             <div class="user-name" style="font-size: var(--font-size-sm);">João Silva</div>
                             <div style="font-size: var(--font-size-xs); color: var(--color-text-muted);">Cidadão Ativo</div>
@@ -182,8 +181,8 @@
             </div>
 
             <div class="mb-4 animate-in delay-1">
-                <h2 class="page-title">Revisar e Enviar</h2>
-                <p class="page-subtitle">Confira os dados da sua denúncia antes de enviar para análise.</p>
+                <h2 class="page-title">Detalhes da Ocorrência</h2>
+                <p class="page-subtitle">Descreva a situação e adicione fotos para melhor identificação.</p>
             </div>
 
             <div class="stepper animate-in delay-2">
@@ -191,98 +190,65 @@
                 <div class="step-line"></div>
                 <div class="step done"><div class="step-circle"><i class="bi bi-check-lg"></i></div><span class="step-label">Categoria</span></div>
                 <div class="step-line"></div>
-                <div class="step done"><div class="step-circle"><i class="bi bi-check-lg"></i></div><span class="step-label">Detalhes</span></div>
+                <div class="step active"><div class="step-circle">3</div><span class="step-label">Detalhes</span></div>
                 <div class="step-line"></div>
-                <div class="step active"><div class="step-circle">4</div><span class="step-label">Revisão</span></div>
+                <div class="step"><div class="step-circle">4</div><span class="step-label">Revisão</span></div>
             </div>
 
-            <div class="row g-4 animate-in delay-3">
-                <div class="col-lg-8">
-                    <div class="review-card">
-                        <div class="d-flex justify-content-between align-items-start mb-4">
-                            <h5 class="section-title mb-0">Resumo da Denúncia</h5>
-                            <span class="badge-status andamento" style="font-size: var(--font-size-xs);">Aguardando envio</span>
+            <!-- Info Preview -->
+            <div class="info-preview animate-in delay-3">
+                <div class="info-row"><i class="bi bi-geo-alt-fill"></i><span id="previewEndereco">Carregando...</span></div>
+                <small>Endereço selecionado</small>
+                <div class="info-row"><i class="bi bi-tag-fill"></i><span id="previewCategoria">Carregando...</span></div>
+                <small>Categoria do resíduo</small>
+            </div>
+
+            <!-- Form -->
+            <div class="form-card animate-in delay-4">
+                <div class="row g-4">
+                    <div class="col-md-8">
+                        <label class="form-label"><i class="bi bi-card-text me-1"></i> Descrição detalhada</label>
+                        <textarea class="form-control" id="descricao" placeholder="Descreva a situação: quantidade de resíduo, estado de decomposição, riscos observados, acessibilidade do local..."></textarea>
+                        <div class="d-flex justify-content-between mt-2">
+                            <small style="color: var(--color-text-muted); font-size: var(--font-size-xs);">Mínimo 20 caracteres</small>
+                            <small style="color: var(--color-text-muted); font-size: var(--font-size-xs);" id="charCount">0/500</small>
                         </div>
-
-                        <div class="review-section">
-                            <div class="review-label"><i class="bi bi-geo-alt"></i> Localização</div>
-                            <div class="review-value" id="revEndereco">Carregando...</div>
-                            <small style="color: var(--color-text-muted); font-family: monospace; font-size: var(--font-size-xs);" id="revCoords">---</small>
-                        </div>
-
-                        <div class="review-divider"></div>
-
-                        <div class="review-section">
-                            <div class="review-label"><i class="bi bi-tag"></i> Categoria</div>
-                            <div class="review-value" id="revCategoria">Carregando...</div>
-                        </div>
-
-                        <div class="review-divider"></div>
-
-                        <div class="review-section">
-                            <div class="review-label"><i class="bi bi-card-text"></i> Descrição</div>
-                            <div class="review-value descricao" id="revDescricao">Carregando...</div>
-                        </div>
-
-                        <div class="review-divider"></div>
-
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="review-label"><i class="bi bi-calendar-event"></i> Data da Ocorrência</div>
-                                <div class="review-value" id="revData">---</div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="review-label"><i class="bi bi-bar-chart"></i> Volume Estimado</div>
-                                <div class="review-value" id="revVolume">---</div>
-                            </div>
-                        </div>
-
-                        <div class="review-divider"></div>
-
-                        <div class="review-section" id="revFotosSection" style="display: none;">
-                            <div class="review-label"><i class="bi bi-images"></i> Fotos Anexadas</div>
-                            <div class="photo-review-grid" id="revFotos"></div>
-                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label"><i class="bi bi-calendar-event me-1"></i> Data da ocorrência</label>
+                        <input type="date" class="form-control mb-3" id="dataOcorrencia">
+                        <label class="form-label"><i class="bi bi-bar-chart me-1"></i> Volume estimado</label>
+                        <select class="form-select" id="volume">
+                            <option value="" selected disabled>Selecione...</option>
+                            <option value="pequeno">Pequeno (até 1 saco)</option>
+                            <option value="medio">Médio (1 a 5 sacos)</option>
+                            <option value="grande">Grande (5 a 10 sacos)</option>
+                            <option value="muito_grande">Muito grande (mais de 10 sacos)</option>
+                        </select>
                     </div>
                 </div>
 
-                <div class="col-lg-4">
-                    <div class="review-card h-100">
-                        <h5 class="section-title mb-3">Local no Mapa</h5>
-                        <div class="mapa-revisao-wrapper">
-                            <div id="mapa-revisao"></div>
-                        </div>
-                        <div class="mt-4">
-                            <div class="review-label"><i class="bi bi-info-circle"></i> Informações</div>
-                            <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary); line-height: var(--line-height-normal);">
-                                Após o envio, sua denúncia será analisada pela equipe de limpeza urbana. 
-                                Você receberá atualizações sobre o status no painel pessoal.
-                            </p>
-                            <div class="d-flex align-items-center gap-2 mt-3 p-3" style="background: var(--color-bg-alt); border-radius: var(--radius-md); border: 1px solid var(--color-border-subtle);">
-                                <i class="bi bi-clock-history" style="color: var(--color-primary); font-size: 1.2rem;"></i>
-                                <div>
-                                    <small style="color: var(--color-text-muted); display: block;">Tempo médio de resposta</small>
-                                    <span style="color: var(--color-text-primary); font-weight: var(--font-weight-semibold); font-size: var(--font-size-sm);">2 a 5 dias úteis</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <hr style="border-color: var(--color-border-subtle); margin: var(--space-6) 0;">
+
+                <!-- Photos -->
+                <label class="form-label"><i class="bi bi-camera me-1"></i> Registro fotográfico</label>
+                <div class="upload-zone" id="uploadZone">
+                    <i class="bi bi-cloud-upload"></i>
+                    <p>Arraste fotos aqui ou clique para selecionar</p>
+                    <small>JPEG, PNG ou WEBP • Máx. 5MB cada • Até 4 fotos</small>
                 </div>
+                <input type="file" id="fileInput" accept="image/*" multiple style="display: none;">
+                <div class="photo-grid" id="photoGrid"></div>
             </div>
 
-            <div class="d-flex justify-content-between align-items-center mt-4 animate-in delay-4">
-                <a href="denuncia_detalhes.html" class="btn btn-cancel text-decoration-none"><i class="bi bi-arrow-left me-1"></i> Voltar</a>
-                <button class="btn-enviar" id="btnEnviar">
-                    <i class="bi bi-check-lg btn-text"></i>
-                    <span class="btn-text">Enviar Denúncia</span>
-                    <i class="bi bi-arrow-repeat spinner"></i>
-                </button>
+            <div class="d-flex justify-content-between align-items-center mt-4 animate-in delay-5">
+                <a href="denuncia_categoria.html" class="btn btn-cancel text-decoration-none"><i class="bi bi-arrow-left me-1"></i> Voltar</a>
+                <button class="btn btn-next" id="btn-proximo">Próximo <i class="bi bi-arrow-right ms-1"></i></button>
             </div>
         </main>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Theme
@@ -298,7 +264,6 @@
             themeIcon.classList.toggle('bi-sun-fill', isDark);
             localStorage.setItem('ecotech-theme', isDark ? 'dark' : 'light');
             showToast(isDark ? 'Tema escuro ativado' : 'Tema claro ativado', 'info');
-            setTimeout(() => map.invalidateSize(), 300);
         });
 
         // Mobile Sidebar
@@ -320,76 +285,80 @@
         }
         window.showToast = showToast;
 
-        // Load data
-        const lat = parseFloat(localStorage.getItem('denuncia_lat'));
-        const lng = parseFloat(localStorage.getItem('denuncia_lng'));
-        const endereco = localStorage.getItem('denuncia_endereco') || 'Endereço não encontrado';
-        const categoria = localStorage.getItem('denuncia_categoria_label') || 'Categoria não encontrada';
-        const descricao = localStorage.getItem('denuncia_descricao') || 'Sem descrição';
-        const data = localStorage.getItem('denuncia_data') || new Date().toISOString().split('T')[0];
-        const volume = localStorage.getItem('denuncia_volume') || 'Não informado';
-        const fotos = JSON.parse(localStorage.getItem('denuncia_fotos') || '[]');
+        // Load previews
+        document.getElementById('previewEndereco').textContent = localStorage.getItem('denuncia_endereco') || 'Endereço não encontrado';
+        document.getElementById('previewCategoria').textContent = localStorage.getItem('denuncia_categoria_label') || 'Categoria não encontrada';
 
-        const volumeLabels = { pequeno: 'Pequeno (até 1 saco)', medio: 'Médio (1 a 5 sacos)', grande: 'Grande (5 a 10 sacos)', muito_grande: 'Muito grande (mais de 10 sacos)' };
+        // Set today's date as default
+        document.getElementById('dataOcorrencia').valueAsDate = new Date();
 
-        document.getElementById('revEndereco').textContent = endereco;
-        document.getElementById('revCoords').textContent = lat && lng ? `${lat.toFixed(6)}, ${lng.toFixed(6)}` : '---';
-        document.getElementById('revCategoria').textContent = categoria;
-        document.getElementById('revDescricao').textContent = descricao;
-        document.getElementById('revData').textContent = new Date(data).toLocaleDateString('pt-BR');
-        document.getElementById('revVolume').textContent = volumeLabels[volume] || volume;
-
-        if (fotos.length > 0) {
-            document.getElementById('revFotosSection').style.display = 'block';
-            document.getElementById('revFotos').innerHTML = fotos.map(src => `
-                <div class="photo-review-item"><img src="${src}" alt="Foto da denúncia"></div>
-            `).join('');
-        }
-
-        // Mini Map
-        const map = L.map('mapa-revisao', { zoomControl: false, attributionControl: false });
-        const lightTiles = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-        const darkTiles = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
-        let currentTiles = L.tileLayer(lightTiles, { maxZoom: 19 }).addTo(map);
-
-        const darkObserver = new MutationObserver((mutations) => {
-            mutations.forEach((m) => {
-                if (m.type === 'attributes' && m.attributeName === 'class') {
-                    const isDark = html.classList.contains('dark');
-                    currentTiles.remove();
-                    currentTiles = L.tileLayer(isDark ? darkTiles : lightTiles, { maxZoom: 19 }).addTo(map);
-                }
-            });
+        // Character count
+        const descricao = document.getElementById('descricao');
+        const charCount = document.getElementById('charCount');
+        descricao.addEventListener('input', () => {
+            const len = descricao.value.length;
+            charCount.textContent = `${len}/500`;
+            charCount.style.color = len > 500 ? 'var(--color-danger)' : 'var(--color-text-muted)';
         });
-        darkObserver.observe(html, { attributes: true });
 
-        if (lat && lng) {
-            map.setView([lat, lng], 15);
-            const icone = L.divIcon({
-                html: '<div style="width:36px;height:36px;background:linear-gradient(135deg,#dc3545 0%,#b91c1c 100%);border-radius:50% 50% 50% 0;transform:rotate(-45deg);box-shadow:0 4px 14px rgba(220,53,69,0.35);border:3px solid white;display:flex;align-items:center;justify-content:center;"><i class="bi bi-exclamation-lg" style="transform:rotate(45deg);color:white;font-size:14px;"></i></div>',
-                className: '', iconSize: [36, 36], iconAnchor: [18, 36]
+        // File Upload
+        const uploadZone = document.getElementById('uploadZone');
+        const fileInput = document.getElementById('fileInput');
+        const photoGrid = document.getElementById('photoGrid');
+        let photos = [];
+
+        uploadZone.addEventListener('click', () => fileInput.click());
+        uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.classList.add('dragover'); });
+        uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('dragover'));
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadZone.classList.remove('dragover');
+            handleFiles(e.dataTransfer.files);
+        });
+        fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+
+        function handleFiles(files) {
+            Array.from(files).forEach(file => {
+                if (!file.type.startsWith('image/')) { showToast(`${file.name} não é uma imagem válida.`, 'warning'); return; }
+                if (file.size > 5 * 1024 * 1024) { showToast(`${file.name} excede 5MB.`, 'warning'); return; }
+                if (photos.length >= 4) { showToast('Limite de 4 fotos atingido.', 'warning'); return; }
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    photos.push({ id: Date.now() + Math.random(), src: e.target.result, name: file.name });
+                    renderPhotos();
+                    showToast('Foto adicionada!', 'success');
+                };
+                reader.readAsDataURL(file);
             });
-            L.marker([lat, lng], { icon: icone }).addTo(map);
-        } else {
-            map.setView([-23.4273, -51.9375], 12);
         }
 
-        // Submit
-        document.getElementById('btnEnviar').addEventListener('click', function() {
-            const btn = this;
-            btn.classList.add('loading');
-            showToast('Enviando denúncia...', 'info');
+        function renderPhotos() {
+            photoGrid.innerHTML = photos.map(p => `
+                <div class="photo-item">
+                    <img src="${p.src}" alt="${p.name}">
+                    <button class="remove-photo" onclick="removePhoto(${p.id})"><i class="bi bi-x"></i></button>
+                </div>
+            `).join('');
+            uploadZone.style.display = photos.length >= 4 ? 'none' : 'block';
+        }
+        window.removePhoto = function(id) {
+            photos = photos.filter(p => p.id !== id);
+            renderPhotos();
+            showToast('Foto removida.', 'info');
+        };
 
-            // Simulate API call
-            setTimeout(() => {
-                const success = Math.random() > 0.1; // 90% success rate for demo
-                if (success) {
-                    localStorage.setItem('denuncia_enviada', 'true');
-                    window.location.href = 'denuncia_sucesso.html';
-                } else {
-                    window.location.href = 'denuncia_falha.html';
-                }
-            }, 2000);
+        // Next button
+        document.getElementById('btn-proximo').addEventListener('click', () => {
+            const desc = descricao.value.trim();
+            if (desc.length < 20) { showToast('Descreva a ocorrência com pelo menos 20 caracteres.', 'warning'); descricao.focus(); return; }
+            const vol = document.getElementById('volume').value;
+            if (!vol) { showToast('Selecione o volume estimado do resíduo.', 'warning'); document.getElementById('volume').focus(); return; }
+            localStorage.setItem('denuncia_descricao', desc);
+            localStorage.setItem('denuncia_data', document.getElementById('dataOcorrencia').value);
+            localStorage.setItem('denuncia_volume', vol);
+            localStorage.setItem('denuncia_fotos', JSON.stringify(photos.map(p => p.src)));
+            showToast('Detalhes salvos! Redirecionando...', 'success');
+            setTimeout(() => window.location.href = 'denuncia_revisao.html', 600);
         });
 
         // Notification
