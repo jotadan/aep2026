@@ -1,0 +1,6 @@
+Migrations gerenciadas com Flask-Migrate (Alembic).
+
+Comandos principais:
+  flask db migrate -m "mensagem"
+  flask db upgrade
+  flask db downgrade

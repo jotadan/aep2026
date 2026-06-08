@@ -1,0 +1,349 @@
+        /* ================================================================
+           ANIMATIONS & ENHANCEMENTS (from inicio.html)
+           ================================================================ */
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.92); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+        @keyframes bellShake {
+            0%, 100% { transform: rotate(0); }
+            2% { transform: rotate(8deg); }
+            4% { transform: rotate(-8deg); }
+            6% { transform: rotate(4deg); }
+            8% { transform: rotate(-4deg); }
+            10% { transform: rotate(0); }
+        }
+        @keyframes ripple {
+            to { transform: scale(4); opacity: 0; }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            opacity: 0;
+        }
+        .animate-in-left {
+            animation: fadeInLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            opacity: 0;
+        }
+        .animate-scale {
+            animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            opacity: 0;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
+
+        /* Enhanced Sidebar */
+        .sidebar {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+        }
+        .sidebar .nav-link {
+            position: relative;
+            overflow: hidden;
+        }
+        .sidebar .nav-link::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s ease, height 0.5s ease;
+        }
+        .sidebar .nav-link:active::after {
+            width: 200px;
+            height: 200px;
+        }
+
+        /* Enhanced Stats */
+        .stat-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-card .stat-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+            border-radius: 0 0 0 var(--radius-md);
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 0;
+        }
+        .stat-card.verde .stat-progress { background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-light) 100%); }
+        .stat-card.azul .stat-progress { background: linear-gradient(90deg, var(--color-secondary) 0%, var(--color-secondary-light) 100%); }
+        .stat-card.amarelo .stat-progress { background: linear-gradient(90deg, var(--color-warning) 0%, var(--color-warning-light) 100%); }
+        .stat-card.roxo .stat-progress { background: linear-gradient(90deg, var(--color-purple) 0%, var(--color-purple-light) 100%); }
+
+        .stat-num {
+            display: inline-block;
+            animation: countUp 0.8s ease-out forwards;
+        }
+
+        /* Notification Bell Animation */
+        .notification-wrapper {
+            position: relative;
+            cursor: pointer;
+            padding: var(--space-2);
+            border-radius: var(--radius-md);
+            transition: var(--transition-fast);
+        }
+        .notification-wrapper:hover {
+            background-color: var(--color-surface-hover);
+        }
+        .notification-wrapper.has-notification i {
+            animation: bellShake 3s ease-in-out infinite;
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            background: var(--color-surface-alt);
+            border: 1.5px solid var(--color-border);
+            border-radius: var(--radius-full);
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            color: var(--color-text-secondary);
+            font-size: 1.1rem;
+        }
+        .theme-toggle:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+            transform: rotate(15deg) scale(1.05);
+            box-shadow: var(--shadow-glow-primary);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--color-text-primary);
+            padding: var(--space-2);
+            cursor: pointer;
+        }
+
+        /* Overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1030;
+        }
+        .overlay.active {
+            display: block;
+        }
+
+        /* Loading Skeleton */
+        .skeleton-load {
+            background: linear-gradient(90deg, var(--color-bg-alt) 25%, var(--color-border-subtle) 50%, var(--color-bg-alt) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: var(--radius-md);
+        }
+
+        /* Map Custom Styles */
+        #mapa-real {
+            height: 100%;
+            min-height: 560px;
+            width: 100%;
+            border-radius: var(--radius-lg);
+            z-index: 1;
+            transition: all 0.4s ease;
+        }
+        .mapa-container {
+            height: 100%;
+            min-height: 560px;
+        }
+        .custom-marker {
+            background: white;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+            border: 3px solid;
+            font-size: 16px;
+        }
+        .marker-verde { border-color: #28a745; color: #28a745; }
+        .marker-azul { border-color: #0d6efd; color: #0d6efd; }
+        .marker-laranja { border-color: #fd7e14; color: #fd7e14; }
+        .marker-vermelho { border-color: #dc3545; color: #dc3545; }
+
+        /* Enhanced Local Items */
+        .local-item {
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: var(--radius-md);
+            margin: 0 calc(var(--space-2) * -1);
+            padding: var(--space-4) var(--space-5);
+            border-left: 3px solid transparent;
+        }
+        .local-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 60%;
+            background: var(--color-primary);
+            border-radius: 0 var(--radius-full) var(--radius-full) 0;
+            transition: width 0.3s ease;
+            opacity: 0.15;
+        }
+        .local-item:hover::before {
+            width: 4px;
+        }
+        .local-item:hover {
+            background-color: var(--color-surface-hover);
+            transform: translateX(4px);
+        }
+        .local-item.ativo {
+            background-color: var(--color-primary-subtle);
+            border-left-color: var(--color-primary);
+            transform: translateX(4px);
+        }
+        .local-item.ativo::before {
+            width: 4px;
+            opacity: 1;
+        }
+
+        /* Leaflet Popup Customization */
+        .leaflet-popup-content-wrapper {
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--color-border-subtle);
+            background: var(--color-surface);
+        }
+        .leaflet-popup-tip {
+            background: var(--color-surface);
+            box-shadow: var(--shadow-md);
+        }
+        .leaflet-popup-content {
+            margin: var(--space-4) var(--space-5);
+            font-family: var(--font-family);
+            color: var(--color-text-primary);
+        }
+
+        /* Hero Banner */
+        .locais-hero {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #166534 40%, #15803d 100%);
+            border-radius: var(--radius-xl);
+            color: white;
+            overflow: hidden;
+            padding: 40px 48px;
+            position: relative;
+            box-shadow: 0 12px 40px rgba(21, 128, 61, 0.2);
+        }
+        .locais-hero::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .locais-hero-title {
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-extrabold);
+            line-height: var(--line-height-tight);
+            margin-bottom: var(--space-3);
+            letter-spacing: -0.02em;
+        }
+        .locais-hero-text {
+            font-size: var(--font-size-base);
+            line-height: var(--line-height-normal);
+            margin-bottom: 0;
+            opacity: 0.92;
+            font-weight: var(--font-weight-medium);
+            max-width: 600px;
+        }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            .sidebar {
+                position: fixed;
+                left: 0;
+                top: 0;
+                z-index: 1040;
+                transform: translateX(-100%);
+                box-shadow: var(--shadow-xl);
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .mobile-menu-btn {
+                display: flex;
+            }
+            .main-content {
+                padding: var(--space-5);
+            }
+            #mapa-real {
+                min-height: 400px;
+            }
+            .mapa-container {
+                min-height: 400px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .main-content {
+                padding: var(--space-5);
+            }
+            .locais-hero {
+                padding: var(--space-6);
+                text-align: center;
+            }
+            .locais-hero-title {
+                font-size: var(--font-size-xl);
+            }
+            #mapa-real {
+                min-height: 340px;
+            }
+            .mapa-container {
+                min-height: 340px;
+            }
+        }

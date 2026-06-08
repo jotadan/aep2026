@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTech - Início</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/dark-mode.css">
+    <link rel="stylesheet" href="/static/css/inicio.css">
+    
+    
+</head>
+
+<body>
+    <!-- Mobile Overlay -->
+    <div class="overlay" id="mobileOverlay"></div>
+    
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div class="d-flex vh-100">
+        <!-- Sidebar -->
+        <nav class="sidebar vh-100 p-3 d-flex flex-column" id="sidebar">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <img src="/static/imagens/logo.png" alt="Logo Ecotech" class="logo-ecotech" style="margin: 0; width: 140px;">
+                <button class="btn-close d-lg-none" id="closeSidebar" aria-label="Fechar menu"></button>
+            </div>
+
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item animate-in-left delay-1">
+                    <a href="/inicio" class="nav-link active">
+                        <i class="bi bi-house-door-fill"></i>Início
+                    </a>
+                </li>
+                <li class="nav-item animate-in-left delay-2">
+                    <a href="/nova-denuncia" class="nav-link">
+                        <i class="bi bi-plus-circle"></i>Nova Denúncia
+                    </a>
+                </li>
+                <li class="nav-item animate-in-left delay-3">
+                    <a href="/minhas-denuncias" class="nav-link">
+                        <i class="bi bi-clipboard-data"></i>Minhas denúncias
+                    </a>
+                </li>
+                <li class="nav-item animate-in-left delay-4">
+                    <a href="/painel" class="nav-link">
+                        <i class="bi bi-graph-up"></i>Painel pessoal
+                    </a>
+                </li>
+                <li class="nav-item animate-in-left delay-5">
+                    <a href="/educacao-ambiental" class="nav-link">
+                        <i class="bi bi-mortarboard"></i>Educação ambiental
+                    </a>
+                </li>
+                <li class="nav-item animate-in-left delay-6">
+                    <a href="/locais-de-coleta" class="nav-link">
+                        <i class="bi bi-geo-alt"></i>Locais de coleta
+                    </a>
+                </li>
+                <li class="nav-item animate-in-left delay-6">
+                    <a href="/perfil" class="nav-link">
+                        <i class="bi bi-person"></i>Perfil
+                    </a>
+                </li>
+                <li class="nav-item animate-in-left delay-6">
+                    <a href="/configuracoes" class="nav-link">
+                        <i class="bi bi-gear"></i>Configurações
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-card text-center p-3 mb-3 animate-in delay-5">
+                <i class="bi bi-tree"></i>
+                <p class="fw-bold mb-1">Cada denúncia faz a diferença!</p>
+                <small>Graças a você, nossa cidade fica mais limpa e sustentável.</small>
+                <div class="mt-3 pt-3" style="border-top: 1px solid rgba(21,128,61,0.1);">
+                    <small class="d-block mb-1" style="opacity: 0.8;">Impacto total</small>
+                    <span class="fw-bold" style="font-size: 1.25rem;">1.250 kg</span>
+                </div>
+            </div>
+
+            <a href="/logout" class="nav-link mt-auto animate-in-left delay-6">
+                <i class="bi bi-box-arrow-right"></i> Sair
+            </a>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content flex-fill p-4">
+            <!-- Top Header Glass -->
+            <div class="top-header-glass d-flex justify-content-between align-items-center animate-in">
+                <div class="d-flex align-items-center gap-3">
+                    <button class="mobile-menu-btn" id="openSidebar">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <div>
+                        <div class="breadcrumb text-muted small mb-1">
+                            <span class="fw-semibold">Início</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <button class="theme-toggle" id="themeToggle" title="Alternar tema">
+                        <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
+                    </button>
+                    <div class="notification-wrapper has-notification" id="notifBtn">
+                        <i class="bi bi-bell fs-5"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2" style="cursor: pointer;">
+                        <img src="/static/{{ current_user.avatar }}" alt="Avatar" class="avatar-img">
+                        <div class="d-none d-md-block">
+                            <div class="user-name" style="font-size: var(--font-size-sm);">{{ current_user.nome }}</div>
+                            <div style="font-size: var(--font-size-xs); color: var(--color-text-muted);">{{ current_user.titulo }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Saudação -->
+            <div class="saudacao mb-4 animate-in delay-1">
+                <h2 class="saudacao-titulo">Bem-vindo de volta, João! 👋</h2>
+                <p class="saudacao-sub">Juntos por uma cidade mais limpa e sustentável. Você tem <strong>3 notificações</strong> pendentes.</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="row g-3 mb-4">
+                <div class="col-md-3 col-sm-6 animate-in delay-2">
+                    <div class="stat-card verde">
+                        <span class="stat-label">Total</span>
+                        <span class="stat-num" data-target="12">0</span>
+                        <span class="stat-desc">Denúncias realizadas</span>
+                        <a href="/minhas-denuncias" class="stat-link">Ver histórico <i class="bi bi-arrow-right"></i></a>
+                        <div class="stat-progress" style="width: 75%;"></div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 animate-in delay-3">
+                    <div class="stat-card azul">
+                        <span class="stat-label">Ativas</span>
+                        <span class="stat-num" data-target="8">0</span>
+                        <span class="stat-desc">Em andamento</span>
+                        <a href="/minhas-denuncias" class="stat-link">Acompanhar <i class="bi bi-arrow-right"></i></a>
+                        <div class="stat-progress" style="width: 60%;"></div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 animate-in delay-4">
+                    <div class="stat-card amarelo">
+                        <span class="stat-label">Resolvidas</span>
+                        <span class="stat-num" data-target="4">0</span>
+                        <span class="stat-desc">Concluídas</span>
+                        <a href="/minhas-denuncias" class="stat-link">Ver resultados <i class="bi bi-arrow-right"></i></a>
+                        <div class="stat-progress" style="width: 40%;"></div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 animate-in delay-5">
+                    <div class="stat-card roxo">
+                        <span class="stat-label">Impacto</span>
+                        <span class="stat-num" data-target="1250" data-suffix=" kg">0</span>
+                        <span class="stat-desc">Resíduos impactados</span>
+                        <a href="/educacao-ambiental" class="stat-link">Saiba mais <i class="bi bi-arrow-right"></i></a>
+                        <div class="stat-progress" style="width: 85%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row: Denúncias + Mapa -->
+            <div class="row g-4 mb-4">
+                <!-- Denúncias Recentes -->
+                <div class="col-lg-7 animate-in delay-3">
+                    <div class="denuncias-card h-100">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="section-title mb-0">Suas denúncias recentes</h5>
+                            <span class="badge bg-primary-subtle text-primary" style="font-size: var(--font-size-xs);">4 ativas</span>
+                        </div>
+
+                        <div class="denuncia-lista">
+                            <!-- Denúncia 1 -->
+                            <div class="denuncia-row d-flex align-items-center gap-3" data-lat="-23.4020" data-lng="-51.9250" data-status="andamento" data-index="0">
+                                <img src="/static/imagens/denuncia1.jpg" class="denuncia-thumb" alt="Entulho">
+                                <div class="denuncia-info flex-fill">
+                                    <div class="denuncia-cat">Entulho / Construção</div>
+                                    <div class="denuncia-end"><i class="bi bi-geo-alt me-1"></i>Av. Colombo, 4230 - Zona 7</div>
+                                </div>
+                                <span class="badge-status andamento">Em andamento</span>
+                                <span class="denuncia-data"><i class="bi bi-clock me-1"></i>20/05/2025</span>
+                            </div>
+
+                            <!-- Denúncia 2 -->
+                            <div class="denuncia-row d-flex align-items-center gap-3" data-lat="-23.4150" data-lng="-51.9380" data-status="andamento" data-index="1">
+                                <img src="/static/imagens/denuncia2.jpg" class="denuncia-thumb" alt="Móveis">
+                                <div class="denuncia-info flex-fill">
+                                    <div class="denuncia-cat">Móveis / Madeira</div>
+                                    <div class="denuncia-end"><i class="bi bi-geo-alt me-1"></i>R. Pioneiro Antônio França de Morais, 256</div>
+                                </div>
+                                <span class="badge-status andamento">Em andamento</span>
+                                <span class="denuncia-data"><i class="bi bi-clock me-1"></i>18/05/2025</span>
+                            </div>
+
+                            <!-- Denúncia 3 -->
+                            <div class="denuncia-row d-flex align-items-center gap-3" data-lat="-23.4149" data-lng="-51.9549" data-status="concluida" data-index="2">
+                                <img src="/static/imagens/denuncia3.jpg" class="denuncia-thumb" alt="Plásticos">
+                                <div class="denuncia-info flex-fill">
+                                    <div class="denuncia-cat">Plásticos</div>
+                                    <div class="denuncia-end"><i class="bi bi-geo-alt me-1"></i>Av. Mandacaru, 1380</div>
+                                </div>
+                                <span class="badge-status concluida">Concluída</span>
+                                <span class="denuncia-data"><i class="bi bi-check-circle me-1"></i>12/05/2025</span>
+                            </div>
+
+                            <!-- Denúncia 4 -->
+                            <div class="denuncia-row d-flex align-items-center gap-3" data-lat="-23.4408" data-lng="-51.9631" data-status="concluida" data-index="3">
+                                <img src="/static/imagens/denuncia4.jpg" class="denuncia-thumb" alt="Eletrônicos">
+                                <div class="denuncia-info flex-fill">
+                                    <div class="denuncia-cat">Eletrônicos</div>
+                                    <div class="denuncia-end"><i class="bi bi-geo-alt me-1"></i>R. das Azaléias, 88</div>
+                                </div>
+                                <span class="badge-status concluida">Concluída</span>
+                                <span class="denuncia-data"><i class="bi bi-check-circle me-1"></i>05/05/2025</span>
+                            </div>
+                        </div>
+
+                        <a href="/minhas-denuncias" class="btn btn-ver-todas w-100 mt-3 text-decoration-none">
+                            Ver todas as denúncias <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mapa Real -->
+                <div class="col-lg-5 animate-in delay-4">
+                    <div class="mapa-card h-100">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="section-title mb-0">Denúncias no mapa</h5>
+                            <button class="btn btn-sm btn-outline-success" id="resetMap" style="padding: 6px 12px; font-size: var(--font-size-xs);">
+                                <i class="bi bi-arrows-fullscreen me-1"></i>Resetar
+                            </button>
+                        </div>
+                        <div id="mapa-real-mini"></div>
+                        <div class="mapa-legenda d-flex gap-3 mt-3 flex-wrap">
+                            <span class="legenda-item"><span class="legenda-dot laranja"></span> Em andamento</span>
+                            <span class="legenda-item"><span class="legenda-dot verde"></span> Concluída</span>
+                            <span class="legenda-item"><span class="legenda-dot roxo"></span> Recebida</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row: Diferença + Dica -->
+            <div class="row g-4 animate-in delay-5">
+                <div class="col-lg-6">
+                    <div class="diferenca-card d-flex align-items-center gap-4 h-100">
+                        <div class="diferenca-texto flex-fill">
+                            <h5>Você está fazendo a diferença! 🌍</h5>
+                            <p class="text-muted mb-3">Cada denúncia ajuda a construir uma cidade mais limpa e consciente. Sua contribuição já impactou <strong>1.250 kg</strong> de resíduos.</p>
+                            <div class="d-flex gap-2">
+                                <span class="dica-tag"><i class="bi bi-tree me-1"></i>+12 árvores</span>
+                                <span class="dica-tag"><i class="bi bi-droplet me-1"></i>-850L poluição</span>
+                            </div>
+                        </div>
+                        <div class="diferenca-img d-none d-sm-block">
+                            <img src="/static/imagens/ilustra-reciclagem.png" alt="Reciclagem" style="width: 140px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="dica-card d-flex align-items-center gap-4 h-100">
+                        <div class="dica-texto flex-fill">
+                            <h5>Dica ambiental do dia 💡</h5>
+                            <p class="text-muted mb-3">Separe corretamente seus resíduos recicláveis e contribua para um futuro mais sustentável! A reciclagem correta reduz em até <strong>70%</strong> o impacto ambiental.</p>
+                            <a href="/educacao-ambiental" class="btn btn-dica text-decoration-none">
+                                Saiba mais <i class="bi bi-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                        <div class="dica-img d-none d-sm-block">
+                            <img src="/static/imagens/folha-dica.png" alt="Folha" style="width: 120px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="mt-5 pt-4 text-center animate-in delay-6" style="border-top: 1px solid var(--color-border-subtle);">
+                <p style="color: var(--color-text-muted); font-size: var(--font-size-sm);">
+                    <i class="bi bi-heart-fill me-1" style="color: var(--color-danger);"></i>
+                    EcoTech 2025 — Feito com cuidado para Maringá
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Floating Action Button -->
+    <a href="/nova-denuncia" class="fab-denuncia" title="Nova Denúncia">
+        <i class="bi bi-plus-lg"></i>
+    </a>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    
+    <script src="/static/js/app.js"></script>
+    <script src="/static/js/inicio.js"></script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+        /* ================================================================
+           ANIMATIONS & ENHANCEMENTS (from inicio.html)
+           ================================================================ */
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.92); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bellShake {
+            0%, 100% { transform: rotate(0); }
+            2% { transform: rotate(8deg); }
+            4% { transform: rotate(-8deg); }
+            6% { transform: rotate(4deg); }
+            8% { transform: rotate(-4deg); }
+            10% { transform: rotate(0); }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            opacity: 0;
+        }
+        .animate-in-left {
+            animation: fadeInLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            opacity: 0;
+        }
+        .animate-scale {
+            animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            opacity: 0;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
+
+        /* Enhanced Sidebar */
+        .sidebar {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+        }
+        .sidebar .nav-link {
+            position: relative;
+            overflow: hidden;
+        }
+        .sidebar .nav-link::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s ease, height 0.5s ease;
+        }
+        .sidebar .nav-link:active::after {
+            width: 200px;
+            height: 200px;
+        }
+
+        /* Notification Bell Animation */
+        .notification-wrapper {
+            position: relative;
+            cursor: pointer;
+            padding: var(--space-2);
+            border-radius: var(--radius-md);
+            transition: var(--transition-fast);
+        }
+        .notification-wrapper:hover {
+            background-color: var(--color-surface-hover);
+        }
+        .notification-wrapper.has-notification i {
+            animation: bellShake 3s ease-in-out infinite;
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            background: var(--color-surface-alt);
+            border: 1.5px solid var(--color-border);
+            border-radius: var(--radius-full);
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            color: var(--color-text-secondary);
+            font-size: 1.1rem;
+        }
+        .theme-toggle:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+            transform: rotate(15deg) scale(1.05);
+            box-shadow: var(--shadow-glow-primary);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--color-text-primary);
+            padding: var(--space-2);
+            cursor: pointer;
+        }
+
+        /* Overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1030;
+        }
+        .overlay.active {
+            display: block;
+        }
+
+        /* Enhanced Perfil Card */
+        .perfil-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .perfil-avatar-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .btn-editar-avatar {
+            position: absolute;
+            bottom: 4px;
+            right: 4px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            color: white;
+            border: 3px solid var(--color-surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-editar-avatar:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            .sidebar {
+                position: fixed;
+                left: 0;
+                top: 0;
+                z-index: 1040;
+                transform: translateX(-100%);
+                box-shadow: var(--shadow-xl);
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .mobile-menu-btn {
+                display: flex;
+            }
+            .main-content {
+                padding: var(--space-5);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .main-content {
+                padding: var(--space-5);
+            }
+        }

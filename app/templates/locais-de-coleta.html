@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTech - Locais de Coleta</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/dark-mode.css">
+
+    <link rel="stylesheet" href="/static/css/locais-de-coleta.css">
+</head>
+
+<body>
+    <!-- Mobile Overlay -->
+    <div class="overlay" id="mobileOverlay"></div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div class="d-flex vh-100">
+        <!-- Sidebar -->
+        <nav class="sidebar vh-100 p-3 d-flex flex-column" id="sidebar">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <img src="/static/imagens/logo.png" alt="Logo Ecotech" class="logo-ecotech" style="margin: 0; width: 140px;">
+                <button class="btn-close d-lg-none" id="closeSidebar" aria-label="Fechar menu"></button>
+            </div>
+
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item animate-in-left delay-1">
+                    <a href="/inicio" class="nav-link">
+                        <i class="bi bi-house-door-fill"></i>Início
+                    </a>
+                </li>
+                <li class="nav-item animate-in-left delay-2">
+                    <a href="/nova-denuncia" class="nav-link">
+                        <i class="bi bi-plus-circle"></i>Nova Denúncia
+                    </a>
+                </li>
+                <li class="nav-item animate-in-left delay-3">
+                    <a href="/minhas-denuncias" class="nav-link">
+                        <i class="bi bi-clipboard-data"></i>Minhas denúncias
+                    </a>
+                </li>
+                <li class="nav-item animate-in-left delay-4">
+                    <a href="/painel" class="nav-link">
+                        <i class="bi bi-graph-up"></i>Painel pessoal
+                    </a>
+                </li>
+                <li class="nav-item animate-in-left delay-5">
+                    <a href="/educacao-ambiental" class="nav-link">
+                        <i class="bi bi-mortarboard"></i>Educação ambiental
+                    </a>
+                </li>
+                <li class="nav-item animate-in-left delay-6">
+                    <a href="/locais-de-coleta" class="nav-link active">
+                        <i class="bi bi-geo-alt"></i>Locais de coleta
+                    </a>
+                </li>
+                <li class="nav-item animate-in-left delay-6">
+                    <a href="/perfil" class="nav-link">
+                        <i class="bi bi-person"></i>Perfil
+                    </a>
+                </li>
+                <li class="nav-item animate-in-left delay-6">
+                    <a href="/configuracoes" class="nav-link">
+                        <i class="bi bi-gear"></i>Configurações
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-card text-center p-3 mb-3 animate-in delay-5">
+                <i class="bi bi-tree"></i>
+                <p class="fw-bold mb-1">Cada denúncia faz a diferença!</p>
+                <small>Graças a você, nossa cidade fica mais limpa e sustentável.</small>
+                <div class="mt-3 pt-3" style="border-top: 1px solid rgba(21,128,61,0.1);">
+                    <small class="d-block mb-1" style="opacity: 0.8;">Impacto total</small>
+                    <span class="fw-bold" style="font-size: 1.25rem;">1.250 kg</span>
+                </div>
+            </div>
+
+            <a href="/logout" class="nav-link mt-auto animate-in-left delay-6">
+                <i class="bi bi-box-arrow-right"></i> Sair
+            </a>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content flex-fill p-4">
+            <!-- Top Header -->
+            <div class="top-header d-flex justify-content-between align-items-center mb-4 animate-in">
+                <div class="d-flex align-items-center gap-3">
+                    <button class="mobile-menu-btn" id="openSidebar">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <div class="breadcrumb text-muted small d-inline-flex align-items-center">
+                        <span>Início</span>
+                        <i class="bi bi-chevron-right mx-2 align-middle"></i>
+                        <span class="fw-semibold text-dark">Locais de Coleta</span>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <button class="theme-toggle" id="themeToggle" title="Alternar tema">
+                        <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
+                    </button>
+                    <div class="notification-wrapper has-notification" id="notifBtn">
+                        <i class="bi bi-bell fs-5"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <div class="user-profile d-flex align-items-center gap-2">
+                        <img src="/static/{{ current_user.avatar }}" alt="Avatar" class="avatar-img">
+                        <div class="d-none d-md-block">
+                            <div class="user-name" style="font-size: var(--font-size-sm);">{{ current_user.nome }}</div>
+                            <div style="font-size: var(--font-size-xs); color: var(--color-text-muted);">{{ current_user.titulo }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page Header -->
+            <div class="page-header mb-4 animate-in delay-1">
+                <h2 class="page-title mb-2">Locais de Coleta</h2>
+                <p class="page-subtitle text-muted mb-0">Encontre os pontos de coleta mais próximos de você em Maringá/PR.</p>
+            </div>
+
+            <!-- Hero Banner -->
+            <div class="locais-hero mb-5 animate-in delay-2">
+                <div class="row align-items-center g-4">
+                    <div class="col-lg-8">
+                        <h3 class="locais-hero-title">Descarte correto começa aqui.</h3>
+                        <p class="locais-hero-text">Maringá conta com diversos pontos de coleta seletiva, ecopontos e centros de descarte especializado. Localize o mais próximo de você, filtre por tipo de resíduo e contribua para uma cidade mais limpa e sustentável.</p>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <a href="/educacao-ambiental" class="btn btn-explorar">Guia de separação</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="row g-3 mb-4">
+                <div class="col-md-3 col-sm-6 animate-in delay-2">
+                    <div class="stat-card verde h-100">
+                        <span class="stat-label">Disponíveis</span>
+                        <span class="stat-num" data-target="5">0</span>
+                        <span class="stat-desc">Pontos de coleta em Maringá</span>
+                        <span class="stat-link">Todos ativos <i class="bi bi-arrow-right"></i></span>
+                        <div class="stat-progress" style="width: 100%;"></div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 animate-in delay-3">
+                    <div class="stat-card azul h-100">
+                        <span class="stat-label">Cobertura</span>
+                        <span class="stat-num" data-target="5" data-suffix=" zonas">0</span>
+                        <span class="stat-desc">Zonas atendidas</span>
+                        <span class="stat-link">Ver no mapa <i class="bi bi-arrow-right"></i></span>
+                        <div class="stat-progress" style="width: 80%;"></div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 animate-in delay-4">
+                    <div class="stat-card amarelo h-100">
+                        <span class="stat-label">Horários</span>
+                        <span class="stat-num" data-target="6" data-suffix=" dias">0</span>
+                        <span class="stat-desc">Funcionamento semanal</span>
+                        <span class="stat-link">Seg a Sáb <i class="bi bi-arrow-right"></i></span>
+                        <div class="stat-progress" style="width: 85%;"></div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 animate-in delay-5">
+                    <div class="stat-card roxo h-100">
+                        <span class="stat-label">Tipos</span>
+                        <span class="stat-num" data-target="5" data-suffix=" tipos">0</span>
+                        <span class="stat-desc">Resíduos aceitos</span>
+                        <span class="stat-link">Filtre abaixo <i class="bi bi-arrow-right"></i></span>
+                        <div class="stat-progress" style="width: 70%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-bar mb-4 animate-in delay-3">
+                <i class="bi bi-search search-icon"></i>
+                <input type="text" class="form-control search-input" id="searchLocais" placeholder="Buscar endereço ou bairro em Maringá">
+            </div>
+
+            <!-- Filter Tags -->
+            <div class="filter-tags mb-4 animate-in delay-4">
+                <button class="filter-btn active" data-tipo="todos">
+                    <i class="bi bi-funnel"></i>
+                    Todos os tipos
+                </button>
+                <button class="filter-btn" data-tipo="eletronicos">
+                    <i class="bi bi-plug"></i>
+                    Eletrônicos
+                </button>
+                <button class="filter-btn" data-tipo="reciclaveis">
+                    <i class="bi bi-recycle"></i>
+                    Recicláveis
+                </button>
+                <button class="filter-btn" data-tipo="organicos">
+                    <i class="bi bi-tree"></i>
+                    Orgânicos
+                </button>
+                <button class="filter-btn" data-tipo="entulho">
+                    <i class="bi bi-trash"></i>
+                    Entulho
+                </button>
+                <button class="filter-btn" data-tipo="perigosos">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    Perigosos
+                </button>
+            </div>
+
+            <!-- Content Area: Lista + Mapa -->
+            <div class="row g-4 animate-in delay-5">
+                <!-- Lista de Locais -->
+                <div class="col-lg-5">
+                    <div class="locais-lista" id="locaisLista">
+                        <!-- Local 1 -->
+                        <div class="local-item d-flex align-items-start gap-3" data-lat="-23.4020" data-lng="-51.9250" data-tipo="entulho">
+                            <div class="local-icon verde">
+                                <i class="bi bi-shop"></i>
+                            </div>
+                            <div class="local-info flex-fill">
+                                <h6 class="local-nome">Ecoponto Zona 07</h6>
+                                <p class="local-endereco"><i class="bi bi-geo-alt me-1"></i>Av. Colombo, 3042 - Zona 07</p>
+                                <p class="local-horario"><i class="bi bi-clock me-1"></i>Seg a Sáb: 8h às 18h</p>
+                            </div>
+                            <span class="local-distancia">0,8 km</span>
+                        </div>
+
+                        <!-- Local 2 -->
+                        <div class="local-item d-flex align-items-start gap-3" data-lat="-23.4150" data-lng="-51.9380" data-tipo="reciclaveis">
+                            <div class="local-icon azul">
+                                <i class="bi bi-recycle"></i>
+                            </div>
+                            <div class="local-info flex-fill">
+                                <h6 class="local-nome">Ponto de Entrega Voluntária - PEV</h6>
+                                <p class="local-endereco"><i class="bi bi-geo-alt me-1"></i>R. Pioneiro Antônio França de Moraes, 500 - Zona 02</p>
+                                <p class="local-horario"><i class="bi bi-clock me-1"></i>Seg a Sáb: 7h às 17h</p>
+                            </div>
+                            <span class="local-distancia">1,3 km</span>
+                        </div>
+
+                        <!-- Local 3 -->
+                        <div class="local-item d-flex align-items-start gap-3" data-lat="-23.4149" data-lng="-51.9549" data-tipo="reciclaveis">
+                            <div class="local-icon laranja">
+                                <i class="bi bi-recycle"></i>
+                            </div>
+                            <div class="local-info flex-fill">
+                                <h6 class="local-nome">Coleta Seletiva - Mandacaru</h6>
+                                <p class="local-endereco"><i class="bi bi-geo-alt me-1"></i>Av. Mandacaru, 200 - Zona 01</p>
+                                <p class="local-horario"><i class="bi bi-clock me-1"></i>Seg a Sáb: 8h às 17h</p>
+                            </div>
+                            <span class="local-distancia">2,1 km</span>
+                        </div>
+
+                        <!-- Local 4 -->
+                        <div class="local-item d-flex align-items-start gap-3" data-lat="-23.4272" data-lng="-51.9115" data-tipo="entulho">
+                            <div class="local-icon verde">
+                                <i class="bi bi-shop"></i>
+                            </div>
+                            <div class="local-info flex-fill">
+                                <h6 class="local-nome">Ecoponto Zona 05</h6>
+                                <p class="local-endereco"><i class="bi bi-geo-alt me-1"></i>Av. Brasil, 1000 - Zona 05</p>
+                                <p class="local-horario"><i class="bi bi-clock me-1"></i>Seg a Sáb: 8h às 18h</p>
+                            </div>
+                            <span class="local-distancia">2,4 km</span>
+                        </div>
+
+                        <!-- Local 5 -->
+                        <div class="local-item d-flex align-items-start gap-3" data-lat="-23.4350" data-lng="-51.9420" data-tipo="perigosos">
+                            <div class="local-icon vermelho">
+                                <i class="bi bi-exclamation-triangle"></i>
+                            </div>
+                            <div class="local-info flex-fill">
+                                <h6 class="local-nome">Central de Resíduos Perigosos</h6>
+                                <p class="local-endereco"><i class="bi bi-geo-alt me-1"></i>R. Industrial, 300 - Zona 03</p>
+                                <p class="local-horario"><i class="bi bi-clock me-1"></i>Seg a Sáb: 8h às 16h</p>
+                            </div>
+                            <span class="local-distancia">3,2 km</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mapa Real -->
+                <div class="col-lg-7">
+                    <div class="mapa-card h-100">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5 class="section-title mb-0">Mapa de Maringá</h5>
+                            <button class="btn btn-sm btn-outline-success" id="resetMap" style="padding: 6px 12px; font-size: var(--font-size-xs);">
+                                <i class="bi bi-arrows-fullscreen me-1"></i>Resetar
+                            </button>
+                        </div>
+                        <div class="mapa-container">
+                            <div id="mapa-real"></div>
+                        </div>
+                        <div class="mapa-legenda d-flex gap-3 mt-3 flex-wrap">
+                            <span class="legenda-item"><span class="legenda-dot verde"></span> Entulho / Ecoponto</span>
+                            <span class="legenda-item"><span class="legenda-dot azul"></span> Recicláveis</span>
+                            <span class="legenda-item"><span class="legenda-dot laranja"></span> Coleta Seletiva</span>
+                            <span class="legenda-item"><span class="legenda-dot vermelho"></span> Perigosos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="edu-hero mt-5 animate-in delay-6">
+                <div class="row align-items-center g-4">
+                    <div class="col-lg-8">
+                        <h3 class="edu-hero-title mb-3">Não encontrou o que precisa?</h3>
+                        <p class="edu-hero-text mb-0">Se há um ponto de descarte irregular na sua região, denuncie! A EcoTech encaminha sua denúncia para os órgãos responsáveis e acompanha a resolução em tempo real.</p>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <a href="/nova-denuncia" class="btn btn-explorar">Fazer uma denúncia</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="mt-5 pt-4 text-center animate-in delay-6" style="border-top: 1px solid var(--color-border-subtle);">
+                <p style="color: var(--color-text-muted); font-size: var(--font-size-sm);">
+                    <i class="bi bi-heart-fill me-1" style="color: var(--color-danger);"></i>
+                    EcoTech 2025 — Feito com cuidado para Maringá
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+
+    <script src="/static/js/app.js"></script>
+    <script src="/static/js/locais-de-coleta.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTech - Configurações</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/dark-mode.css">
+
+
+    <link rel="stylesheet" href="/static/css/configuracoes.css">
+</head>
+
+<body>
+    <!-- Mobile Overlay -->
+    <div class="overlay" id="mobileOverlay"></div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div class="d-flex vh-100">
+        <!-- Sidebar -->
+        <nav class="sidebar vh-100 p-3 d-flex flex-column" id="sidebar">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <img src="/static/imagens/logo.png" alt="Logo Ecotech" class="logo-ecotech" style="margin: 0; width: 140px;">
+                <button class="btn-close d-lg-none" id="closeSidebar" aria-label="Fechar menu"></button>
+            </div>
+
+            <ul class="nav flex-column mb-auto">
+                <li class="nav-item animate-in-left delay-1">
+                    <a href="/inicio" class="nav-link">
+                        <i class="bi bi-house-door-fill"></i>Início
+                    </a>
+                </li>
+                <li class="nav-item animate-in-left delay-2">
+                    <a href="/nova-denuncia" class="nav-link">
+                        <i class="bi bi-plus-circle"></i>Nova Denúncia
+                    </a>
+                </li>
+                <li class="nav-item animate-in-left delay-3">
+                    <a href="/minhas-denuncias" class="nav-link">
+                        <i class="bi bi-clipboard-data"></i>Minhas denúncias
+                    </a>
+                </li>
+                <li class="nav-item animate-in-left delay-4">
+                    <a href="/painel" class="nav-link">
+                        <i class="bi bi-graph-up"></i>Painel pessoal
+                    </a>
+                </li>
+                <li class="nav-item animate-in-left delay-5">
+                    <a href="/educacao-ambiental" class="nav-link">
+                        <i class="bi bi-mortarboard"></i>Educação ambiental
+                    </a>
+                </li>
+                <li class="nav-item animate-in-left delay-6">
+                    <a href="/locais-de-coleta" class="nav-link">
+                        <i class="bi bi-geo-alt"></i>Locais de coleta
+                    </a>
+                </li>
+                <li class="nav-item animate-in-left delay-6">
+                    <a href="/perfil" class="nav-link">
+                        <i class="bi bi-person"></i>Perfil
+                    </a>
+                </li>
+                <li class="nav-item animate-in-left delay-6">
+                    <a href="/configuracoes" class="nav-link active">
+                        <i class="bi bi-gear"></i>Configurações
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-card text-center p-3 mb-3 animate-in delay-5">
+                <i class="bi bi-tree"></i>
+                <p class="fw-bold mb-1">Cada denúncia faz a diferença!</p>
+                <small>Graças a você, nossa cidade fica mais limpa e sustentável.</small>
+                <div class="mt-3 pt-3" style="border-top: 1px solid rgba(21,128,61,0.1);">
+                    <small class="d-block mb-1" style="opacity: 0.8;">Impacto total</small>
+                    <span class="fw-bold" style="font-size: 1.25rem;">1.250 kg</span>
+                </div>
+            </div>
+
+            <a href="/logout" class="nav-link mt-auto animate-in-left delay-6">
+                <i class="bi bi-box-arrow-right"></i> Sair
+            </a>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content flex-fill p-4">
+            <!-- Top Header -->
+            <div class="top-header d-flex justify-content-between align-items-center mb-4 animate-in">
+                <div class="d-flex align-items-center gap-3">
+                    <button class="mobile-menu-btn" id="openSidebar">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <div class="breadcrumb text-muted small d-inline-flex align-items-center">
+                        <span>Início</span>
+                        <i class="bi bi-chevron-right mx-2 align-middle"></i>
+                        <span class="fw-semibold text-dark">Configurações</span>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <button class="theme-toggle" id="themeToggle" title="Alternar tema">
+                        <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
+                    </button>
+                    <div class="notification-wrapper has-notification" id="notifBtn">
+                        <i class="bi bi-bell fs-5"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <div class="user-profile d-flex align-items-center gap-2">
+                        <img src="/static/{{ current_user.avatar }}" alt="Avatar" class="avatar-img">
+                        <div class="d-none d-md-block">
+                            <div class="user-name" style="font-size: var(--font-size-sm);">{{ current_user.nome }}</div>
+                            <div style="font-size: var(--font-size-xs); color: var(--color-text-muted);">{{ current_user.titulo }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="page-title mb-4 animate-in delay-1">Configurações</h2>
+
+            <div class="row g-4">
+                <!-- Left: Config Menu -->
+                <div class="col-lg-3 animate-in delay-2">
+                    <div class="config-menu-wrapper">
+                        <div class="config-menu-card">
+                            <div class="config-menu-item active" data-section="conta">
+                                <div class="config-menu-icon">
+                                    <i class="bi bi-person"></i>
+                                </div>
+                                <div class="config-menu-info">
+                                    <span class="config-menu-title">Conta</span>
+                                    <span class="config-menu-desc">Dados pessoais e perfil</span>
+                                </div>
+                            </div>
+                            <div class="config-menu-item" data-section="seguranca">
+                                <div class="config-menu-icon">
+                                    <i class="bi bi-shield-lock"></i>
+                                </div>
+                                <div class="config-menu-info">
+                                    <span class="config-menu-title">Segurança</span>
+                                    <span class="config-menu-desc">Senha e autenticação</span>
+                                </div>
+                            </div>
+                            <div class="config-menu-item" data-section="notificacoes">
+                                <div class="config-menu-icon">
+                                    <i class="bi bi-bell"></i>
+                                </div>
+                                <div class="config-menu-info">
+                                    <span class="config-menu-title">Notificações</span>
+                                    <span class="config-menu-desc">Alertas e comunicações</span>
+                                </div>
+                            </div>
+                            <div class="config-menu-item" data-section="privacidade">
+                                <div class="config-menu-icon">
+                                    <i class="bi bi-eye-slash"></i>
+                                </div>
+                                <div class="config-menu-info">
+                                    <span class="config-menu-title">Privacidade</span>
+                                    <span class="config-menu-desc">Visibilidade e dados</span>
+                                </div>
+                            </div>
+                            <div class="config-menu-item" data-section="aparencia">
+                                <div class="config-menu-icon">
+                                    <i class="bi bi-palette"></i>
+                                </div>
+                                <div class="config-menu-info">
+                                    <span class="config-menu-title">Aparência</span>
+                                    <span class="config-menu-desc">Tema e idioma</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Config Content -->
+                <div class="col-lg-9 animate-in delay-3">
+                    <!-- SEÇÃO: CONTA -->
+                    <div class="config-section" id="section-conta">
+                        <div class="config-card mb-4">
+                            <h4 class="config-card-title">Informações da Conta</h4>
+                            <p class="config-card-subtitle">Gerencie seus dados pessoais e como você aparece na plataforma.</p>
+
+                            <div class="preference-item d-flex align-items-center justify-content-between">
+                                <div class="preference-info">
+                                    <span class="preference-title">Nome de exibição</span>
+                                    <span class="preference-desc">{{ current_user.nome }}</span>
+                                </div>
+                                <button class="btn btn-outline-success btn-sm btn-editar">
+                                    <i class="bi bi-pencil"></i> Editar
+                                </button>
+                            </div>
+
+                            <div class="preference-item d-flex align-items-center justify-content-between">
+                                <div class="preference-info">
+                                    <span class="preference-title">E-mail principal</span>
+                                    <span class="preference-desc">joao.silva@email.com</span>
+                                </div>
+                                <button class="btn btn-outline-success btn-sm btn-editar">
+                                    <i class="bi bi-pencil"></i> Editar
+                                </button>
+                            </div>
+
+                            <div class="preference-item d-flex align-items-center justify-content-between">
+                                <div class="preference-info">
+                                    <span class="preference-title">Telefone</span>
+                                    <span class="preference-desc">(44) 99999-9999</span>
+                                </div>
+                                <button class="btn btn-outline-success btn-sm btn-editar">
+                                    <i class="bi bi-pencil"></i> Editar
+                                </button>
+                            </div>
+
+                            <div class="preference-item d-flex align-items-center justify-content-between">
+                                <div class="preference-info">
+                                    <span class="preference-title">Foto de perfil</span>
+                                    <span class="preference-desc">Atualize sua imagem de avatar</span>
+                                </div>
+                                <button class="btn btn-outline-success btn-sm btn-editar">
+                                    <i class="bi bi-upload"></i> Alterar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SEÇÃO: SEGURANÇA -->
+                    <div class="config-section d-none" id="section-seguranca">
+                        <div class="config-card mb-4">
+                            <h4 class="config-card-title">Segurança da Conta</h4>
+                            <p class="config-card-subtitle">Proteja seu acesso com senha forte e autenticação em duas etapas.</p>
+
+                            <div class="security-item d-flex align-items-center justify-content-between">
+                                <div class="security-info">
+                                    <span class="security-title"><i class="bi bi-key me-2 text-primary"></i>Alterar senha</span>
+                                    <span class="security-desc">Última alteração: 15 de janeiro de 2025</span>
+                                </div>
+                                <button class="btn btn-outline-success btn-sm btn-editar">
+                                    <i class="bi bi-pencil"></i> Atualizar
+                                </button>
+                            </div>
+
+                            <div class="security-item d-flex align-items-center justify-content-between">
+                                <div class="security-info">
+                                    <span class="security-title"><i class="bi bi-shield-check me-2 text-primary"></i>Autenticação em duas etapas (2FA)</span>
+                                    <span class="security-desc">Adicione uma camada extra de proteção ao seu login</span>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="toggle2FA">
+                                </div>
+                            </div>
+
+                            <div class="security-item d-flex align-items-center justify-content-between">
+                                <div class="security-info">
+                                    <span class="security-title"><i class="bi bi-phone me-2 text-primary"></i>Verificação por SMS</span>
+                                    <span class="security-desc">Receba códigos de verificação no seu celular</span>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="toggleSMS" checked>
+                                </div>
+                            </div>
+
+                            <div class="security-item d-flex align-items-center justify-content-between">
+                                <div class="security-info">
+                                    <span class="security-title"><i class="bi bi-clock-history me-2 text-primary"></i>Sessões ativas</span>
+                                    <span class="security-desc">1 dispositivo conectado (este navegador)</span>
+                                </div>
+                                <button class="btn btn-outline-danger btn-sm">
+                                    <i class="bi bi-box-arrow-right"></i> Encerrar todas
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="danger-zone mt-4">
+                            <h5 class="danger-zone-title"><i class="bi bi-exclamation-triangle-fill"></i> Zona de Perigo</h5>
+                            <div class="security-item d-flex align-items-center justify-content-between" style="border-bottom: none;">
+                                <div class="security-info">
+                                    <span class="security-title" style="color: var(--color-danger);">Excluir conta</span>
+                                    <span class="security-desc">Esta ação é irreversível. Todos os dados serão permanentemente removidos.</span>
+                                </div>
+                                <button class="btn btn-danger btn-sm">
+                                    <i class="bi bi-trash"></i> Excluir
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SEÇÃO: NOTIFICAÇÕES -->
+                    <div class="config-section d-none" id="section-notificacoes">
+                        <div class="config-card mb-4">
+                            <h4 class="config-card-title">Notificações</h4>
+                            <p class="config-card-subtitle">Escolha como e quando deseja ser notificado sobre atividades na plataforma.</p>
+
+                            <div class="preference-item d-flex align-items-center justify-content-between">
+                                <div class="preference-info">
+                                    <span class="preference-title"><i class="bi bi-envelope me-2 text-primary"></i>E-mail de denúncias</span>
+                                    <span class="preference-desc">Receba atualizações sobre suas denúncias por e-mail</span>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="notifEmailDenuncia" checked>
+                                </div>
+                            </div>
+
+                            <div class="preference-item d-flex align-items-center justify-content-between">
+                                <div class="preference-info">
+                                    <span class="preference-title"><i class="bi bi-envelope me-2 text-primary"></i>Newsletter semanal</span>
+                                    <span class="preference-desc">Resumo semanal de impacto ambiental e novidades</span>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="notifNewsletter" checked>
+                                </div>
+                            </div>
+
+                            <div class="preference-item d-flex align-items-center justify-content-between">
+                                <div class="preference-info">
+                                    <span class="preference-title"><i class="bi bi-bell me-2 text-primary"></i>Notificações push</span>
+                                    <span class="preference-desc">Alertas em tempo real no navegador</span>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="notifPush">
+                                </div>
+                            </div>
+
+                            <div class="preference-item d-flex align-items-center justify-content-between">
+                                <div class="preference-info">
+                                    <span class="preference-title"><i class="bi bi-trophy me-2 text-primary"></i>Conquistas e pontos</span>
+                                    <span class="preference-desc">Seja notificado ao ganhar conquistas ou pontos</span>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="notifConquistas" checked>
+                                </div>
+                            </div>
+
+                            <div class="preference-item d-flex align-items-center justify-content-between">
+                                <div class="preference-info">
+                                    <span class="preference-title"><i class="bi bi-megaphone me-2 text-primary"></i>Comunicados da prefeitura</span>
+                                    <span class="preference-desc">Alertas oficiais sobre coleta e manutenção urbana</span>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="notifPrefeitura" checked>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SEÇÃO: PRIVACIDADE -->
+                    <div class="config-section d-none" id="section-privacidade">
+                        <div class="config-card mb-4">
+                            <h4 class="config-card-title">Privacidade</h4>
+                            <p class="config-card-subtitle">Controle quem pode ver suas informações e como seus dados são utilizados.</p>
+
+                            <div class="preference-item d-flex align-items-center justify-content-between">
+                                <div class="preference-info">
+                                    <span class="preference-title">Visibilidade do perfil</span>
+                                    <span class="preference-desc">Quem pode ver suas denúncias e conquistas</span>
+                                </div>
+                                <select class="preference-select">
+                                    <option value="publico" selected>Público</option>
+                                    <option value="amigos">Apenas eu</option>
+                                    <option value="privado">Anônimo nas denúncias</option>
+                                </select>
+                            </div>
+
+                            <div class="preference-item d-flex align-items-center justify-content-between">
+                                <div class="preference-info">
+                                    <span class="preference-title">Mostrar estatísticas</span>
+                                    <span class="preference-desc">Exibir quantidade de denúncias no perfil público</span>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="privStats" checked>
+                                </div>
+                            </div>
+
+                            <div class="preference-item d-flex align-items-center justify-content-between">
+                                <div class="preference-info">
+                                    <span class="preference-title">Compartilhamento de localização</span>
+                                    <span class="preference-desc">Permitir uso da localização para mapas e filtros</span>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="privLoc" checked>
+                                </div>
+                            </div>
+
+                            <div class="preference-item d-flex align-items-center justify-content-between">
+                                <div class="preference-info">
+                                    <span class="preference-title">Dados de uso</span>
+                                    <span class="preference-desc">Contribuir anonimamente para melhorias da plataforma</span>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="privDados" checked>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="config-card">
+                            <h5 class="config-card-title" style="font-size: var(--font-size-lg);">Exportar dados</h5>
+                            <p class="config-card-subtitle">Baixe uma cópia de todos os seus dados pessoais e denúncias.</p>
+                            <button class="btn btn-outline-success btn-editar">
+                                <i class="bi bi-download"></i> Solicitar arquivo JSON
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- SEÇÃO: APARÊNCIA -->
+                    <div class="config-section d-none" id="section-aparencia">
+                        <div class="config-card mb-4">
+                            <h4 class="config-card-title">Aparência</h4>
+                            <p class="config-card-subtitle">Personalize a experiência visual da plataforma.</p>
+
+                            <div class="preference-item d-flex align-items-center justify-content-between">
+                                <div class="preference-info">
+                                    <span class="preference-title"><i class="bi bi-moon-stars me-2 text-primary"></i>Tema escuro</span>
+                                    <span class="preference-desc">Ativar modo noturno em toda a plataforma</span>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="toggleThemeDark">
+                                </div>
+                            </div>
+
+                            <div class="preference-item d-flex align-items-center justify-content-between">
+                                <div class="preference-info">
+                                    <span class="preference-title"><i class="bi bi-translate me-2 text-primary"></i>Idioma</span>
+                                    <span class="preference-desc">Idioma de exibição da interface</span>
+                                </div>
+                                <select class="preference-select">
+                                    <option value="pt-BR" selected>Português (Brasil)</option>
+                                    <option value="en-US">English (US)</option>
+                                    <option value="es-ES">Español</option>
+                                </select>
+                            </div>
+
+                            <div class="preference-item d-flex align-items-center justify-content-between">
+                                <div class="preference-info">
+                                    <span class="preference-title"><i class="bi bi-fonts me-2 text-primary"></i>Tamanho da fonte</span>
+                                    <span class="preference-desc">Ajuste o tamanho do texto para melhor legibilidade</span>
+                                </div>
+                                <select class="preference-select">
+                                    <option value="pequeno">Pequeno</option>
+                                    <option value="normal" selected>Normal</option>
+                                    <option value="grande">Grande</option>
+                                </select>
+                            </div>
+
+                            <div class="preference-item d-flex align-items-center justify-content-between">
+                                <div class="preference-info">
+                                    <span class="preference-title"><i class="bi bi-geo me-2 text-primary"></i>Formato de data</span>
+                                    <span class="preference-desc">Como as datas são exibidas na plataforma</span>
+                                </div>
+                                <select class="preference-select">
+                                    <option value="ddmm" selected>DD/MM/AAAA</option>
+                                    <option value="mmdd">MM/DD/AAAA</option>
+                                    <option value="aaaamm">AAAA-MM-DD</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="mt-5 pt-4 text-center animate-in delay-6" style="border-top: 1px solid var(--color-border-subtle);">
+                <p style="color: var(--color-text-muted); font-size: var(--font-size-sm);">
+                    <i class="bi bi-heart-fill me-1" style="color: var(--color-danger);"></i>
+                    EcoTech 2025 — Feito com cuidado para Maringá
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+    <script src="/static/js/app.js"></script>
+    <script src="/static/js/configuracoes.js"></script>
+</body>
+
+</html>
