@@ -1,0 +1,38 @@
+{% extends "admin/base.html" %}
+
+{% block titulo %}Usuários{% endblock %}
+{% block breadcrumb %}Usuários{% endblock %}
+{% block nav_usuarios %}active{% endblock %}
+
+{% block conteudo %}
+<div class="mb-4 animate-in delay-1">
+    <h2 class="page-title">Usuários</h2>
+    <p class="page-subtitle">Gerencie quem tem acesso administrativo à plataforma.</p>
+</div>
+
+<div class="search-bar animate-in delay-2">
+    <i class="bi bi-search search-icon"></i>
+    <input type="text" class="search-input" id="searchUsuarios" placeholder="Buscar por nome ou e-mail...">
+</div>
+
+<div class="tabela-denuncias-wrapper animate-in delay-3">
+    <table class="tabela-denuncias">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Denúncias</th>
+                <th>Desde</th>
+                <th>Administrador</th>
+            </tr>
+        </thead>
+        <tbody id="corpoTabelaUsuarios"></tbody>
+    </table>
+    <div class="tabela-vazia" id="tabelaVazia" style="display: none;">
+        <i class="bi bi-people"></i>
+        <p>Nenhum usuário encontrado.</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}<script src="/static/js/admin-usuarios.js"></script>{% endblock %}

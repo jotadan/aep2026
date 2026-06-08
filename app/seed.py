@@ -15,6 +15,13 @@ USUARIO_DEMO = {
     "senha": "ecotech123",
 }
 
+USUARIO_ADMIN = {
+    "nome": "Equipe EcoTech",
+    "email": "admin@ecotech.com",
+    "senha": "admin123",
+    "titulo": "Administrador",
+}
+
 
 def semear_status():
     for dados in STATUS_PADRAO:
@@ -37,6 +44,23 @@ def semear_usuario_demo():
         database.session.commit()
 
 
+def semear_usuario_admin():
+    existente = database.session.execute(
+        database.select(Usuario).filter_by(email=USUARIO_ADMIN["email"])
+    ).scalar_one_or_none()
+    if not existente:
+        usuario = Usuario(
+            nome=USUARIO_ADMIN["nome"],
+            email=USUARIO_ADMIN["email"],
+            titulo=USUARIO_ADMIN["titulo"],
+            is_admin=True,
+        )
+        usuario.definir_senha(USUARIO_ADMIN["senha"])
+        database.session.add(usuario)
+        database.session.commit()
+
+
 def semear_dados_iniciais():
     semear_status()
     semear_usuario_demo()
+    semear_usuario_admin()

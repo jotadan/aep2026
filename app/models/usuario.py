@@ -15,6 +15,7 @@ class Usuario(UserMixin, database.Model):
     senha_hash = database.Column(database.String(255), nullable=False)
     avatar = database.Column(database.String(255), default="imagens/avatar.png")
     titulo = database.Column(database.String(80), default="Cidadão Ativo")
+    is_admin = database.Column(database.Boolean, nullable=False, default=False)
     criado_em = database.Column(database.DateTime, default=datetime.utcnow)
 
     denuncias = database.relationship(

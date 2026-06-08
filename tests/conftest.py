@@ -18,6 +18,11 @@ def app(tmp_path):
         database.create_all()
         semear_status()
         AutenticacaoService().registrar("Usuário Teste", "teste@ecotech.com", "senha123")
+        admin = AutenticacaoService().registrar(
+            "Administrador", "admin@ecotech.com", "admin123"
+        )
+        admin.is_admin = True
+        database.session.commit()
     yield aplicacao
 
 
@@ -27,6 +32,14 @@ def client(app):
 
 
 @pytest.fixture
-def cliente_logado(client):
-    client.post("/login", data={"email": "teste@ecotech.com", "senha": "senha123"})
-    return client
+def cliente_logado(app):
+    cliente = app.test_client()
+    cliente.post("/login", data={"email": "teste@ecotech.com", "senha": "senha123"})
+    return cliente
+
+
+@pytest.fixture
+def cliente_admin(app):
+    cliente = app.test_client()
+    cliente.post("/login", data={"email": "admin@ecotech.com", "senha": "admin123"})
+    return cliente

@@ -1,0 +1,68 @@
+{% extends "admin/base.html" %}
+
+{% block titulo %}Denúncias{% endblock %}
+{% block breadcrumb %}Denúncias{% endblock %}
+{% block nav_denuncias %}active{% endblock %}
+
+{% block conteudo %}
+<div class="mb-4 animate-in delay-1">
+    <h2 class="page-title">Gerenciar denúncias</h2>
+    <p class="page-subtitle">Visualize todas as denúncias e atualize o status com registro no histórico.</p>
+</div>
+
+<div class="filter-tags animate-in delay-2" id="filtrosStatus">
+    <button class="filter-btn active" data-filter="todas"><i class="bi bi-grid"></i> Todas</button>
+</div>
+
+<div class="search-bar animate-in delay-2">
+    <i class="bi bi-search search-icon"></i>
+    <input type="text" class="search-input" id="searchDenuncias" placeholder="Buscar por protocolo, denunciante, endereço ou categoria...">
+</div>
+
+<div class="tabela-denuncias-wrapper animate-in delay-3">
+    <table class="tabela-denuncias">
+        <thead>
+            <tr>
+                <th>Protocolo</th>
+                <th>Denunciante</th>
+                <th>Assunto</th>
+                <th>Status</th>
+                <th>Data de envio</th>
+                <th>Atualização</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="corpoTabelaDenuncias"></tbody>
+    </table>
+    <div class="tabela-vazia" id="tabelaVazia" style="display: none;">
+        <i class="bi bi-inbox"></i>
+        <p>Nenhuma denúncia encontrada.</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block modais %}
+<div class="modal fade" id="modalDenuncia" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content admin-modal">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitulo">Detalhe da denúncia</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body" id="modalCorpo">
+                <!-- preenchido via JS -->
+            </div>
+            <div class="modal-footer flex-column align-items-stretch gap-2">
+                <label class="form-label mb-0 fw-semibold"><i class="bi bi-arrow-repeat"></i> Atualizar status</label>
+                <div class="d-flex gap-2 flex-wrap">
+                    <select class="form-select" id="selectStatus" style="max-width: 220px;"></select>
+                    <input type="text" class="form-control" id="inputObservacao" placeholder="Observação (opcional)">
+                    <button class="btn btn-next" id="btnSalvarStatus"><i class="bi bi-check-lg"></i> Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}<script src="/static/js/admin-denuncias.js"></script>{% endblock %}

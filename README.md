@@ -123,11 +123,11 @@ docker compose exec web flask db upgrade
 
 ## 👤 Como acessar o sistema
 
-Acesse **http://localhost:8081** e crie sua conta em **/registro**, ou use o usuário demo
-criado automaticamente pelo seed:
+Acesse **http://localhost:8081** e crie sua conta em **/registro**, ou use os usuários
+criados automaticamente pelo seed:
 
-- **E-mail:** `joao@ecotech.com`
-- **Senha:** `ecotech123`
+- **Cidadão** — E-mail: `joao@ecotech.com` · Senha: `ecotech123`
+- **Administrador** — E-mail: `admin@ecotech.com` · Senha: `admin123`
 
 ### URLs principais (sem `.html`)
 
@@ -141,6 +141,7 @@ criado automaticamente pelo seed:
 | Educação ambiental | `/educacao-ambiental` |
 | Locais de coleta | `/locais-de-coleta` |
 | Perfil / Configurações | `/perfil` · `/configuracoes` |
+| **Painel administrativo** | `/admin` · `/admin/denuncias` · `/admin/usuarios` (só para admins) |
 
 O Nginx redireciona automaticamente URLs antigas terminadas em `.html` para a versão limpa.
 
@@ -171,6 +172,28 @@ estrutura de dados, e não apenas de um `ORDER BY`. Essa ordem alimenta a API
 
 ---
 
+## 🛠️ Painel administrativo
+
+A **equipe** (usuários com `is_admin = true`) tem acesso a uma área restrita em `/admin`,
+protegida pelo decorator `admin_required`
+([`app/routes/seguranca.py`](app/routes/seguranca.py)). O acesso é controlado pelo campo
+booleano `is_admin` na tabela `usuarios` (migration `0002`); o seed já cria um administrador
+(`admin@ecotech.com`).
+
+O painel permite:
+
+- **Dashboard** (`/admin`) — estatísticas globais (total de denúncias, ativas, concluídas,
+  usuários) e distribuição por status.
+- **Denúncias** (`/admin/denuncias`) — lista **todas** as denúncias de **todos** os usuários,
+  com busca e filtro por status. Ao abrir o detalhe (denunciante, fotos, histórico), o admin
+  pode **alterar o status**, o que gera automaticamente um novo registro no histórico.
+- **Usuários** (`/admin/usuarios`) — lista os usuários e permite **promover/rebaixar**
+  administradores (um admin não pode remover o próprio acesso).
+
+O link **"Painel admin"** aparece na barra lateral apenas para usuários administradores.
+
+---
+
 ## 🔌 API
 
 Todas as rotas exigem usuário autenticado.
@@ -181,6 +204,18 @@ Todas as rotas exigem usuário autenticado.
 | `POST` | `/api/denuncias` | Cria uma denúncia (multipart, com fotos) |
 | `GET` | `/api/denuncias/<protocolo>` | Detalhe de uma denúncia (com histórico e fotos) |
 | `GET` | `/api/estatisticas` | Totais do usuário (total, ativas, concluídas, impacto) |
+
+### API administrativa (exige `is_admin`)
+
+| Método | Rota | Descrição |
+|---|---|---|
+| `GET` | `/api/admin/denuncias` | Lista todas as denúncias (mais recentes primeiro) |
+| `GET` | `/api/admin/denuncias/<protocolo>` | Detalhe completo (com denunciante) |
+| `POST` | `/api/admin/denuncias/<protocolo>/status` | Atualiza o status (registra no histórico) |
+| `GET` | `/api/admin/status` | Lista os status disponíveis |
+| `GET` | `/api/admin/estatisticas` | Estatísticas globais da plataforma |
+| `GET` | `/api/admin/usuarios` | Lista os usuários |
+| `POST` | `/api/admin/usuarios/<id>/admin` | Promove/rebaixa um administrador |
 
 ---
 
@@ -217,7 +252,6 @@ docker compose down -v
 ## 🔭 Possíveis melhorias futuras
 
 - Página de detalhe completa da denúncia (timeline e galeria de fotos).
-- Painel administrativo para a equipe atualizar o status das denúncias.
 - Notificações reais (e-mail / push) a cada mudança de status.
 - Paginação e ordenação configurável na tabela de denúncias.
 - Testes de front-end (E2E) e cobertura ampliada do backend.
